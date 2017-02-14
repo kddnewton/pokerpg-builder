@@ -1,8 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
 
-import data from '../config/natures.csv';
-
 export default React.createClass({
   getInitialState() {
     return { selected: null };
@@ -16,8 +14,8 @@ export default React.createClass({
   },
 
   render() {
-    const options = data.map(nature => {
-      return { value: nature.Nature, label: nature.Nature };
+    const options = [...Array(100).keys()].map(level => {
+      return { value: level + 1, label: level + 1 };
     });
     return <Select options={options} onChange={this.updateValue} value={this.state.selected} />;
   }
