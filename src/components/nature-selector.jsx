@@ -1,8 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
 
-const options = require('../config/natures.csv').map(nature => {
-  return { value: nature.Nature, label: nature.Nature };
+const natures = {};
+const options = [];
+
+require('../config/natures.csv').forEach(nature => {
+  natures[nature.Nature] = nature;
+  options.push({ value: nature.Nature, label: nature.Nature });
 });
 
 export default React.createClass({
@@ -15,6 +19,7 @@ export default React.createClass({
       newValue = { value: null };
     }
     this.setState({ selected: newValue.value });
+    this.props.updateNature(natures[newValue.value]);
   },
 
   render() {

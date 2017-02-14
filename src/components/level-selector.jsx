@@ -15,6 +15,7 @@ export default React.createClass({
       newValue = { value: null };
     }
     this.setState({ selected: newValue.value });
+    this.props.updateLevel(newValue.value);
   },
 
   render() {
