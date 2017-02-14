@@ -1,7 +1,7 @@
 {
-  "name": "poke-rpg",
+  "name": "poke-rpg-pokemon-builder",
   "version": "0.0.1",
-  "description": "PokeRPG",
+  "description": "PokeRPG Pokemon Builder",
   "private": true,
   "dependencies": {
     "react": "^0.14.7",
