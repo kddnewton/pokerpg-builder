@@ -1,8 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 
-const options = [...Array(100).keys()].map(level => {
-  return { value: level + 1, label: level + 1 };
+const options = require('../config/pokemon.csv').map(pokemon => {
+  return { value: pokemon.Number, label: `(#${pokemon.Number}) ${pokemon.Name}` };
 });
 
 export default React.createClass({

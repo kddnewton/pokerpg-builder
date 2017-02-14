@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PokemonSelector from './pokemon-selector';
 import LevelSelector from './level-selector';
 import NatureSelector from './nature-selector';
 
@@ -11,6 +12,7 @@ export default class App extends React.Component {
     return (
       <div className="container">
         <h1>PokeRPG</h1>
+        <PokemonSelector />
         <LevelSelector />
         <NatureSelector />
       </div>
