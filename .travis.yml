@@ -1,0 +1,7 @@
+language: node_js
+node_js: '5.11'
+script:
+- PROD=true npm run build
+cache:
+  directories:
+  - node_modules
