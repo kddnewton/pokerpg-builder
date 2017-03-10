@@ -29,7 +29,9 @@ export default React.createClass({
   render() {
     let pokeDisplay = "";
     if (this.state.level && this.state.nature && this.state.pokemon) {
-      pokeDisplay = <PokeDisplay pokemon={this.state.pokemon} level={this.state.level} />;
+      pokeDisplay = (
+        <PokeDisplay pokemon={this.state.pokemon} level={this.state.level} />
+      );
     }
 
     return (
@@ -93,9 +95,12 @@ export default React.createClass({
         sAtk: parseInt(spec["Special Atk"]),
         sDef: parseInt(spec["Special Def"]),
         speed: parseInt(spec.Speed)
-      }
+      };
       options[poke.number] = poke;
-      displays.push({ value: poke.number, label: `(#${poke.number}) ${poke.name}` });
+      displays.push({
+        value: poke.number,
+        label: `(#${poke.number}) ${poke.name}`
+      });
     });
 
     return { update: this.updatePokemon, displays, options };
