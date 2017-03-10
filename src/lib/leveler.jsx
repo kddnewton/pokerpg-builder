@@ -7,11 +7,13 @@ const applyNature = (nature, pokemon) => {
 };
 
 const canRaiseStat = (pokemon, originalStats, nextStat) => {
-  // Object.keys(originalStats).every(statName => {
-//     pokemon[nextStat] >= originalStats[statName] ==
-//       pokemon[nextStat] + 1 >= originalStats[statName];
-//   });
-return true;
+  const compareStat = (valueA, valueB) => valueA > valueB ? 1 : -1;
+
+  return Object.keys(originalStats).every(statName => {
+    return originalStats[statName] == originalStats[nextStat] ||
+      compareStat(originalStats[statName], originalStats[nextStat]) ==
+        compareStat(pokemon[statName], pokemon[nextStat] + 1);
+  });
 };
 
 const applyLevel = (level, pokemon) => {
