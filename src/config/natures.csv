@@ -1,37 +1,37 @@
 Value,Nature,Raise,Lower
-1,Cuddly,HP,Attack
-2,Distracted,HP,Defense
-3,Proud,HP,"Special Atk"
-4,Decisive,HP,"Special Def"
-5,Patient,HP,Speed
-6,Desperate,Attack,HP
-7,Lonely,Attack,Defense
-8,Adamant,Attack,"Special Atk"
-9,Naughty,Attack,"Special Def"
-10,Brave,Attack,Speed
-11,Stark,Defense,HP
-12,Bold,Defense,Attack
-13,Impish,Defense,"Special Atk"
-14,Lax,Defense,"Special Def"
-15,Relaxed,Defense,Speed
-16,Curious,"Special Atk",HP
-17,Modest,"Special Atk",Attack
-18,Mild,"Special Atk",Defense
-19,Rash,"Special Atk","Special Def"
-20,Quiet,"Special Atk",Speed
-21,Dreamy,"Special Def",HP
-22,Calm,"Special Def",Attack
-23,Gentle,"Special Def",Defense
-24,Careful,"Special Def","Special Atk"
-25,Sassy,"Special Def",Speed
-26,Skittish,Speed,HP
-27,Timid,Speed,Attack
-28,Hasty,Speed,Defense
-29,Jolly,Speed,"Special Atk"
-30,Naive,Speed,"Special Def"
-31,Composed,HP,HP
-32,Hardy,Attack,Attack
-33,Docile,Defense,Defense
-34,Bashful,"Special Atk","Special Atk"
-35,Quirky,"Special Def","Special Def"
-36,Serious,Speed,Speed
+1,Cuddly,hp,attack
+2,Distracted,hp,defense
+3,Proud,hp,sAtk
+4,Decisive,hp,sDef
+5,Patient,hp,speed
+6,Desperate,attack,hp
+7,Lonely,attack,defense
+8,Adamant,attack,sAtk
+9,Naughty,attack,sDef
+10,Brave,attack,speed
+11,Stark,defense,hp
+12,Bold,defense,attack
+13,Impish,defense,sAtk
+14,Lax,defense,sDef
+15,Relaxed,defense,speed
+16,Curious,sAtk,hp
+17,Modest,sAtk,attack
+18,Mild,sAtk,defense
+19,Rash,sAtk,sDef
+20,Quiet,sAtk,speed
+21,Dreamy,sDef,hp
+22,Calm,sDef,attack
+23,Gentle,sDef,defense
+24,Careful,sDef,sAtk
+25,Sassy,sDef,speed
+26,Skittish,speed,hp
+27,Timid,speed,attack
+28,Hasty,speed,defense
+29,Jolly,speed,sAtk
+30,Naive,speed,sDef
+31,Composed,hp,hp
+32,Hardy,attack,attack
+33,Docile,defense,defense
+34,Bashful,sAtk,sAtk
+35,Quirky,sDef,sDef
+36,Serious,speed,speed

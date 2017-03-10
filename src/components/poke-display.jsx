@@ -1,28 +1,28 @@
 import React, { PropTypes } from "react";
 
-const PokeDisplay = ({ pokemon, level }) => {
-  const hitPointsDisplay = level + pokemon.hp * 3 + 10;
+const PokeDisplay = ({ poke, level }) => {
+  const hitPointsDisplay = level + poke.hp * 3 + 10;
 
   return (
     <dl>
       <dt>HP</dt>
       <dd>{hitPointsDisplay}</dd>
       <dt>Attack</dt>
-      <dd>{pokemon.attack}</dd>
+      <dd>{poke.attack}</dd>
       <dt>Defense</dt>
-      <dd>{pokemon.defense}</dd>
+      <dd>{poke.defense}</dd>
       <dt>Special Atk</dt>
-      <dd>{pokemon.sAtk}</dd>
+      <dd>{poke.sAtk}</dd>
       <dt>Special Def</dt>
-      <dd>{pokemon.sDef}</dd>
+      <dd>{poke.sDef}</dd>
       <dt>Speed</dt>
-      <dd>{pokemon.speed}</dd>
+      <dd>{poke.speed}</dd>
     </dl>
   );
 };
 
 PokeDisplay.propTypes = {
-  pokemon: PropTypes.any.isRequired,
+  poke: PropTypes.any.isRequired,
   level: PropTypes.number.isRequired
 };
 

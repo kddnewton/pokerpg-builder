@@ -7,6 +7,7 @@ import {
   natureSelectorProps,
   pokemonSelectorProps
 } from "../lib/selector-props";
+import leveler from "../lib/leveler";
 
 import "react-select/dist/react-select.css";
 import "../stylesheets/app";
@@ -35,9 +36,12 @@ export default React.createClass({
   render() {
     let pokeDisplay = "";
     if (this.state.level && this.state.nature && this.state.pokemon) {
-      pokeDisplay = (
-        <PokeDisplay pokemon={this.state.pokemon} level={this.state.level} />
+      const leveled = leveler(
+        this.state.level,
+        this.state.nature,
+        this.state.pokemon
       );
+      pokeDisplay = <PokeDisplay poke={leveled} level={this.state.level} />;
     }
 
     return (
