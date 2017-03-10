@@ -1,8 +1,5 @@
 import React from "react";
-
-import PokemonSelector from "./pokemon-selector";
-import LevelSelector from "./level-selector";
-import NatureSelector from "./nature-selector";
+import Selector from "./selector";
 import PokeDisplay from "./poke-display";
 
 import "react-select/dist/react-select.css";
@@ -30,18 +27,77 @@ export default React.createClass({
   },
 
   render() {
+    let pokeDisplay = "";
+    if (this.state.level && this.state.nature && this.state.pokemon) {
+      pokeDisplay = <PokeDisplay pokemon={this.state.pokemon} level={this.state.level} />;
+    }
+
     return (
-      <div className="container">
-        <h1>PokeRPG</h1>
-        <PokemonSelector updatePokemon={this.updatePokemon} />
-        <LevelSelector updateLevel={this.updateLevel} />
-        <NatureSelector updateNature={this.updateNature} />
-        <PokeDisplay
-          level={this.state.level}
-          nature={this.state.nature}
-          pokemon={this.state.pokemon}
-        />
+      <div>
+        <header>PokeRPG Pokemon Builder</header>
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12">
+              <strong>Pokemon</strong>
+              <Selector {...this._pokemonSelectorProps()} />
+
+              <strong>Level</strong>
+              <Selector {...this._levelSelectorProps()} />
+
+              <strong>Nature</strong>
+              <Selector {...this._natureSelectorProps()} />
+            </div>
+          </div>
+
+          {pokeDisplay}
+        </div>
       </div>
     );
+  },
+
+  _levelSelectorProps() {
+    const options = {};
+    const displays = [];
+
+    [...Array(100).keys()].forEach(level => {
+      options[level + 1] = level + 1;
+      displays.push({ value: level + 1, label: level + 1 });
+    });
+
+    return { update: this.updateLevel, displays, options };
+  },
+
+  _natureSelectorProps() {
+    const options = {};
+    const displays = [];
+
+    require("../config/natures").forEach(nature => {
+      options[nature.Nature] = nature;
+      displays.push({ value: nature.Nature, label: nature.Nature });
+    });
+
+    return { update: this.updateNature, displays, options };
+  },
+
+  _pokemonSelectorProps() {
+    const options = {};
+    const displays = [];
+
+    require("../config/pokemon").forEach(spec => {
+      const poke = {
+        number: spec.Number,
+        name: spec.Name,
+        hp: parseInt(spec.HP),
+        attack: parseInt(spec.Attack),
+        defense: parseInt(spec.Defense),
+        sAtk: parseInt(spec["Special Atk"]),
+        sDef: parseInt(spec["Special Def"]),
+        speed: parseInt(spec.Speed)
+      }
+      options[poke.number] = poke;
+      displays.push({ value: poke.number, label: `(#${poke.number}) ${poke.name}` });
+    });
+
+    return { update: this.updatePokemon, displays, options };
   }
 });
