@@ -1,11 +1,18 @@
-import React from 'react';
-import Select from 'react-select';
+import React from "react";
+import Select from "react-select";
 
 const pokemon = {};
 const options = [];
-const stats = ['HP', 'Attack', 'Defense', 'Special Atk', 'Special Def', 'Speed'];
+const stats = [
+  "HP",
+  "Attack",
+  "Defense",
+  "Special Atk",
+  "Special Def",
+  "Speed"
+];
 
-require('../config/pokemon.csv').forEach(poke => {
+require("../config/pokemon").forEach(poke => {
   stats.forEach(stat => poke[stat] = parseInt(poke[stat]));
   pokemon[poke.Number] = poke;
   options.push({ value: poke.Number, label: `(#${poke.Number}) ${poke.Name}` });
@@ -25,6 +32,12 @@ export default React.createClass({
   },
 
   render() {
-    return <Select options={options} onChange={this.updateValue} value={this.state.selected} />;
+    return (
+      <Select
+        options={options}
+        onChange={this.updateValue}
+        value={this.state.selected}
+      />
+    );
   }
 });

@@ -1,14 +1,17 @@
-import React from 'react';
+import React from "react";
 
 export default React.createClass({
   /** Calculation functions **/
 
   calculate(nextProps) {
     const newState = nextProps.pokemon;
-    newState[nextProps.nature.Raise] += this.incrementFrom(nextProps.nature.Raise);
+    newState[nextProps.nature.Raise] += this.incrementFrom(
+      nextProps.nature.Raise
+    );
     newState[nextProps.nature.Lower] = Math.max(
       1,
-      newState[nextProps.nature.Lower] - this.incrementFrom(nextProps.nature.Lower)
+      newState[nextProps.nature.Lower] -
+        this.incrementFrom(nextProps.nature.Lower)
     );
 
     newState.level = nextProps.level;
@@ -17,7 +20,7 @@ export default React.createClass({
 
   hitPointsDisplay() {
     if (this.state.level && this.state.HP) {
-      return this.state.level + (this.state.HP * 3) + 10;
+      return this.state.level + this.state.HP * 3 + 10;
     } else {
       return null;
     }
@@ -43,7 +46,7 @@ export default React.createClass({
 
   render() {
     if (this.state.level && this.state.HP) {
-      const hitPointsDisplay = this.state.level + (this.state.HP * 3) + 10;
+      const hitPointsDisplay = this.state.level + this.state.HP * 3 + 10;
     } else {
       const hitPointsDisplay = null;
     }
@@ -57,9 +60,9 @@ export default React.createClass({
         <dt>Defense</dt>
         <dd>{this.state.Defense}</dd>
         <dt>Special Atk</dt>
-        <dd>{this.state['Special Atk']}</dd>
+        <dd>{this.state["Special Atk"]}</dd>
         <dt>Special Def</dt>
-        <dd>{this.state['Special Def']}</dd>
+        <dd>{this.state["Special Def"]}</dd>
         <dt>Speed</dt>
         <dd>{this.state.Speed}</dd>
       </dl>

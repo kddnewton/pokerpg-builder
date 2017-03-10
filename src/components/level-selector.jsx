@@ -1,5 +1,5 @@
-import React from 'react';
-import Select from 'react-select';
+import React from "react";
+import Select from "react-select";
 
 const options = [...Array(100).keys()].map(level => {
   return { value: level + 1, label: level + 1 };
@@ -19,6 +19,12 @@ export default React.createClass({
   },
 
   render() {
-    return <Select options={options} onChange={this.updateValue} value={this.state.selected} />;
+    return (
+      <Select
+        options={options}
+        onChange={this.updateValue}
+        value={this.state.selected}
+      />
+    );
   }
 });

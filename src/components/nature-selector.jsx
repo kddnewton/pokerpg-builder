@@ -1,10 +1,10 @@
-import React from 'react';
-import Select from 'react-select';
+import React from "react";
+import Select from "react-select";
 
 const natures = {};
 const options = [];
 
-require('../config/natures.csv').forEach(nature => {
+require("../config/natures").forEach(nature => {
   natures[nature.Nature] = nature;
   options.push({ value: nature.Nature, label: nature.Nature });
 });
@@ -23,6 +23,12 @@ export default React.createClass({
   },
 
   render() {
-    return <Select options={options} onChange={this.updateValue} value={this.state.selected} />;
+    return (
+      <Select
+        options={options}
+        onChange={this.updateValue}
+        value={this.state.selected}
+      />
+    );
   }
 });

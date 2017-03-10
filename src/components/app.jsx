@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import PokemonSelector from './pokemon-selector';
-import LevelSelector from './level-selector';
-import NatureSelector from './nature-selector';
-import PokeDisplay from './poke-display';
+import PokemonSelector from "./pokemon-selector";
+import LevelSelector from "./level-selector";
+import NatureSelector from "./nature-selector";
+import PokeDisplay from "./poke-display";
 
-import 'react-select/dist/react-select.css';
-import '../stylesheets/app.css';
+import "react-select/dist/react-select.css";
+import "../stylesheets/app";
 
 export default React.createClass({
   getInitialState() {
@@ -14,7 +14,7 @@ export default React.createClass({
       level: null,
       nature: null,
       pokemon: null
-    }
+    };
   },
 
   updateLevel(level) {
