@@ -2,6 +2,12 @@ import React from "react";
 import Selector from "./selector";
 import PokeDisplay from "./poke-display";
 
+import {
+  levelSelectorProps,
+  natureSelectorProps,
+  pokemonSelectorProps
+} from "../lib/selector-props";
+
 import "react-select/dist/react-select.css";
 import "../stylesheets/app";
 
@@ -41,13 +47,13 @@ export default React.createClass({
           <div className="row">
             <div className="col-xs-12">
               <strong>Pokemon</strong>
-              <Selector {...this._pokemonSelectorProps()} />
+              <Selector {...pokemonSelectorProps(this.updatePokemon)} />
 
               <strong>Level</strong>
-              <Selector {...this._levelSelectorProps()} />
+              <Selector {...levelSelectorProps(this.updateLevel)} />
 
               <strong>Nature</strong>
-              <Selector {...this._natureSelectorProps()} />
+              <Selector {...natureSelectorProps(this.updateNature)} />
             </div>
           </div>
 
@@ -55,54 +61,5 @@ export default React.createClass({
         </div>
       </div>
     );
-  },
-
-  _levelSelectorProps() {
-    const options = {};
-    const displays = [];
-
-    [...Array(100).keys()].forEach(level => {
-      options[level + 1] = level + 1;
-      displays.push({ value: level + 1, label: level + 1 });
-    });
-
-    return { update: this.updateLevel, displays, options };
-  },
-
-  _natureSelectorProps() {
-    const options = {};
-    const displays = [];
-
-    require("../config/natures").forEach(nature => {
-      options[nature.Nature] = nature;
-      displays.push({ value: nature.Nature, label: nature.Nature });
-    });
-
-    return { update: this.updateNature, displays, options };
-  },
-
-  _pokemonSelectorProps() {
-    const options = {};
-    const displays = [];
-
-    require("../config/pokemon").forEach(spec => {
-      const poke = {
-        number: spec.Number,
-        name: spec.Name,
-        hp: parseInt(spec.HP),
-        attack: parseInt(spec.Attack),
-        defense: parseInt(spec.Defense),
-        sAtk: parseInt(spec["Special Atk"]),
-        sDef: parseInt(spec["Special Def"]),
-        speed: parseInt(spec.Speed)
-      };
-      options[poke.number] = poke;
-      displays.push({
-        value: poke.number,
-        label: `(#${poke.number}) ${poke.name}`
-      });
-    });
-
-    return { update: this.updatePokemon, displays, options };
   }
 });
