@@ -7,16 +7,30 @@ header {
   border-bottom: 4px solid #ffcb05;
   box-shadow: 0px 1px 5px 0px #6af;
   color: white;
+  margin-bottom: 40px;
   padding: 4px 8px;
 }
 
-.container {
-  margin: 50px auto;
-  width: 600px;
+header a {
+  color: white;
+}
+
+header a:hover {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .Select {
   margin-bottom: 20px;
+}
+
+.poke-display {
+  margin-top: 20px;
+}
+
+.strong {
+  font-weight: bold;
 }
 
 strong {

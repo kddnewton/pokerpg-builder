@@ -12,11 +12,11 @@ if (process.env.NODE_ENV === "production") {
 module.exports = {
   entry: "./src/index",
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "docs"),
     filename: "[name].js"
   },
   resolve: {
-    extensions: ["", ".js", ".jsx", ".css", ".csv"]
+    extensions: ["", ".js", ".jsx", ".css", ".csv", ".png", ".pdf"]
   },
   module: {
     loaders: [
@@ -25,7 +25,12 @@ module.exports = {
       { test: /\.png$/, loader: "file" },
       { test: /\.csv$/, loader: "dsv" },
       { test: /\.css$/, loader: styleExtractor.extract("style", "css") },
-      { test: /favicon\.png$/, loader: "file", query: { name: "favicon.png" } }
+      { test: /favicon\.png$/, loader: "file", query: { name: "favicon.png" } },
+      {
+        test: /PokeRPG\-Base\-Stat\-Info\.pdf$/,
+        loader: "file",
+        query: { name: "PokeRPG-Base-Stat-Info.pdf" }
+      }
     ]
   },
   plugins: plugins

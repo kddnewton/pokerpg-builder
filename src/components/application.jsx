@@ -10,7 +10,8 @@ import {
 import leveler from "../lib/leveler";
 
 import "react-select/dist/react-select.css";
-import "../stylesheets/app";
+import "../application";
+import pdfPath from "../PokeRPG-Base-Stat-Info";
 
 export default React.createClass({
   getInitialState() {
@@ -46,21 +47,22 @@ export default React.createClass({
 
     return (
       <div>
-        <header>PokeRPG Pokemon Builder</header>
+        <header>
+          PokeRPG Pokemon Builder
+          <a href={pdfPath} className="pull-right">
+            <span className="glyphicon glyphicon-file" /> (PDF)
+          </a>
+        </header>
         <div className="container">
-          <div className="row">
-            <div className="col-xs-12">
-              <strong>Pokemon</strong>
-              <Selector {...pokemonSelectorProps(this.updatePokemon)} />
-
-              <strong>Level</strong>
-              <Selector {...levelSelectorProps(this.updateLevel)} />
-
-              <strong>Nature</strong>
-              <Selector {...natureSelectorProps(this.updateNature)} />
-            </div>
-          </div>
-
+          <Selector
+            label="Pokemon"
+            {...pokemonSelectorProps(this.updatePokemon)}
+          />
+          <Selector label="Level" {...levelSelectorProps(this.updateLevel)} />
+          <Selector
+            label="Nature"
+            {...natureSelectorProps(this.updateNature)}
+          />
           {pokeDisplay}
         </div>
       </div>
