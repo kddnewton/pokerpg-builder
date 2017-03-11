@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.babel.js --hot",
-    "build": "NODE_ENV=production rm -rf docs && webpack --config webpack.config.babel.js --progress",
+    "build": "bin/build",
     "lint": "prettier --write {*.js,src/*.{js,jsx},src/**/*.{js,jsx}}"
   },
   "author": "Kevin Deisz",
