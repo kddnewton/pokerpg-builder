@@ -22,7 +22,6 @@ module.exports = {
     loaders: [
       { test: /\.jsx?$/, loader: "babel", exclude: /node_modules/ },
       { test: /\.json$/, loader: "json" },
-      { test: /\.png$/, loader: "file" },
       { test: /\.csv$/, loader: "dsv" },
       { test: /\.css$/, loader: styleExtractor.extract("style", "css") },
       { test: /favicon\.png$/, loader: "file", query: { name: "favicon.png" } },
