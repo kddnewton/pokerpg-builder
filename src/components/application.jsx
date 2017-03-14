@@ -87,11 +87,24 @@ export default React.createClass({
             </div>
           </div>
           <div className="row">
-            <div className="col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
-              <a className="btn btn-primary" href="#" onClick={this.randomNature}>Random</a>
+            <div
+              className="col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3"
+            >
+              <a
+                className="btn btn-primary"
+                href="#"
+                onClick={this.randomNature}
+              >
+                Random
+              </a>
             </div>
-            <div className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5">
-              <Selector ref="nature" {...natureSelectorProps(this.updateNature)} />
+            <div
+              className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5"
+            >
+              <Selector
+                ref="nature"
+                {...natureSelectorProps(this.updateNature)}
+              />
             </div>
           </div>
           <div className="row">
