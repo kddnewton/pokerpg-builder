@@ -6,6 +6,11 @@ const Selector = React.createClass({
     return { selected: null };
   },
 
+  random() {
+    const displays = this.props.displays;
+    this.update(displays[Math.floor(Math.random() * displays.length)]);
+  },
+
   update(newValue) {
     if (!newValue) {
       newValue = { value: null };
@@ -16,18 +21,11 @@ const Selector = React.createClass({
 
   render() {
     return (
-      <div className="row">
-        <div
-          className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3"
-        >
-          <strong>{this.props.label}</strong>
-          <Select
-            options={this.props.displays}
-            onChange={this.update}
-            value={this.state.selected}
-          />
-        </div>
-      </div>
+      <Select
+        options={this.props.displays}
+        onChange={this.update}
+        value={this.state.selected}
+      />
     );
   }
 });
@@ -35,8 +33,7 @@ const Selector = React.createClass({
 Selector.propTypes = {
   options: PropTypes.any,
   displays: PropTypes.arrayOf(PropTypes.any).isRequired,
-  update: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
+  update: PropTypes.func.isRequired
 };
 
 export default Selector;

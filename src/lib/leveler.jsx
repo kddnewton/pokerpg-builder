@@ -42,5 +42,9 @@ const applyLevel = (level, pokemon) => {
 };
 
 export default (level, nature, pokemon) => {
-  return applyLevel(level, applyNature(nature, pokemon));
+  // Clone the pokemon object so that the option from the select doesn't get
+  // accidentally modified.
+  const cloned = Object.assign({}, pokemon);
+
+  return applyLevel(level, applyNature(nature, cloned));
 };
