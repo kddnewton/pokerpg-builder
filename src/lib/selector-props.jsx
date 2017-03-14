@@ -27,21 +27,28 @@ export const pokemonSelectorProps = update => {
   const displays = [];
 
   require("../config/pokemon").forEach(spec => {
+    if (!spec.Name) {
+      return;
+    }
+
     const poke = {
       number: spec.Number,
       name: spec.Name,
       hp: parseInt(spec.HP),
       attack: parseInt(spec.Attack),
       defense: parseInt(spec.Defense),
-      sAtk: parseInt(spec["Special Atk"]),
-      sDef: parseInt(spec["Special Def"]),
+      sAtk: parseInt(spec["Special Attack"]),
+      sDef: parseInt(spec["Special Defense"]),
       speed: parseInt(spec.Speed)
     };
-    options[poke.number] = poke;
-    displays.push({
-      value: poke.number,
-      label: `(#${poke.number}) ${poke.name}`
-    });
+
+    let label = poke.name;
+    if (poke.number) {
+      label = `(#${poke.number}) ${poke.name}`;
+    }
+
+    options[poke.name] = poke;
+    displays.push({ value: poke.name, label: label });
   });
 
   return { update, displays, options };
