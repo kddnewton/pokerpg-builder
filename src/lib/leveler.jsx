@@ -6,19 +6,7 @@ const applyNature = (nature, pokemon) => {
   return pokemon;
 };
 
-const canRaiseStat = (pokemon, originalStats, nextStat) => {
-  const compareStat = (valueA, valueB) => valueA > valueB ? 1 : -1;
-
-  return Object.keys(originalStats).every(statName => {
-    return originalStats[statName] == originalStats[nextStat] ||
-      compareStat(originalStats[statName], originalStats[nextStat]) ==
-        compareStat(pokemon[statName], pokemon[nextStat] + 1);
-  });
-};
-
-const applyLevel = (level, pokemon) => {
-  const randomStat = stats => stats[Math.floor(Math.random() * stats.length)];
-
+const applyLevel = (level, pokemon, getNextStat) => {
   const originalStats = {
     hp: pokemon.hp,
     attack: pokemon.attack,
@@ -31,20 +19,18 @@ const applyLevel = (level, pokemon) => {
 
   let nextStat;
   while (statPoints > 0) {
-    nextStat = randomStat(Object.keys(originalStats));
-    if (canRaiseStat(pokemon, originalStats, nextStat)) {
-      pokemon[nextStat] += 1;
-      statPoints -= 1;
-    }
+    nextStat = getNextStat(originalStats, pokemon);
+    pokemon[nextStat] += 1;
+    statPoints -= 1;
   }
 
   return pokemon;
 };
 
-export default (level, nature, pokemon) => {
+export default (level, nature, pokemon, algorithm) => {
   // Clone the pokemon object so that the option from the select doesn't get
   // accidentally modified.
   const cloned = Object.assign({}, pokemon);
 
-  return applyLevel(level, applyNature(nature, cloned));
+  return applyLevel(level, applyNature(nature, cloned), algorithm);
 };

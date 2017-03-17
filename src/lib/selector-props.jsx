@@ -1,3 +1,13 @@
+const canRaiseStat = (originalStats, currentStats, nextStat) => {
+  const compareStat = (valueA, valueB) => valueA > valueB ? 1 : -1;
+
+  return Object.keys(originalStats).every(statName => {
+    return originalStats[statName] == originalStats[nextStat] ||
+      compareStat(originalStats[statName], originalStats[nextStat]) ==
+        compareStat(currentStats[statName], currentStats[nextStat] + 1);
+  });
+};
+
 export const levelSelectorProps = update => {
   const options = {};
   const displays = [];
@@ -50,6 +60,38 @@ export const pokemonSelectorProps = update => {
     options[poke.name] = poke;
     displays.push({ value: poke.name, label: label });
   });
+
+  return { update, displays, options };
+};
+
+export const algorithmSelectorProps = update => {
+  const options = {
+    random: (originalStats, currentStats) => {
+      const stats = Object.keys(originalStats);
+      const nextStat = stats[Math.floor(Math.random() * stats.length)];
+
+      if (canRaiseStat(originalStats, currentStats, nextStat)) {
+        return nextStat;
+      } else {
+        return options["random"](originalStats, currentStats);
+      }
+    },
+    even: (originalStats, currentStats) => {
+      return Object.keys(originalStats).reduce((current, stat) => {
+        const delta = currentStats[stat] - originalStats[stat];
+        if ((current === null || delta < (currentStats[current] - originalStats[current])) && canRaiseStat(originalStats, currentStats, stat)) {
+          return stat;
+        } else {
+          return current;
+        }
+      }, null);
+    }
+  };
+
+  const displays = [
+    { value: "random", label: "Random" },
+    { value: "even", label: "Even" }
+  ];
 
   return { update, displays, options };
 };

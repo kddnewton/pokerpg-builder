@@ -5,7 +5,8 @@ import PokeDisplay from "./poke-display";
 import {
   levelSelectorProps,
   natureSelectorProps,
-  pokemonSelectorProps
+  pokemonSelectorProps,
+  algorithmSelectorProps
 } from "../lib/selector-props";
 import leveler from "../lib/leveler";
 
@@ -18,7 +19,8 @@ export default React.createClass({
     return {
       level: null,
       nature: null,
-      pokemon: null
+      pokemon: null,
+      algorithm: null
     };
   },
 
@@ -39,15 +41,22 @@ export default React.createClass({
     this.setState({ pokemon: pokemon });
   },
 
+  updateAlgorithm(algorithm) {
+    this.setState({ algorithm: algorithm });
+  },
+
   render() {
     let pokeDisplay = "";
-    if (this.state.level && this.state.nature && this.state.pokemon) {
+    let state = this.state;
+
+    if (state.level && state.nature && state.pokemon && state.algorithm) {
       const leveled = leveler(
-        this.state.level,
-        this.state.nature,
-        this.state.pokemon
+        state.level,
+        state.nature,
+        state.pokemon,
+        state.algorithm
       );
-      pokeDisplay = <PokeDisplay poke={leveled} level={this.state.level} />;
+      pokeDisplay = <PokeDisplay poke={leveled} level={state.level} />;
     }
 
     const defaultClassName = "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3";
@@ -105,6 +114,16 @@ export default React.createClass({
                 ref="nature"
                 {...natureSelectorProps(this.updateNature)}
               />
+            </div>
+          </div>
+          <div className="row">
+            <div className={defaultClassName}>
+              <strong>Algorithm</strong>
+            </div>
+          </div>
+          <div className="row">
+            <div className={defaultClassName}>
+              <Selector {...algorithmSelectorProps(this.updateAlgorithm)} />
             </div>
           </div>
           <div className="row">
