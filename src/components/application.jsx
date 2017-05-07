@@ -1,4 +1,6 @@
 import React from "react";
+import "react-select/dist/react-select";
+
 import Selector from "./selector";
 import PokeDisplay from "./poke-display";
 
@@ -10,7 +12,6 @@ import {
 } from "../lib/selector-props";
 import leveler from "../lib/leveler";
 
-import "react-select/dist/react-select.css";
 import "../application";
 import pdfPath from "../PokeRPG-Base-Stat-Info";
 
@@ -30,24 +31,24 @@ export default React.createClass({
   },
 
   updateLevel(level) {
-    this.setState({ level: level });
+    this.setState({ level });
   },
 
   updateNature(nature) {
-    this.setState({ nature: nature });
+    this.setState({ nature });
   },
 
   updatePokemon(pokemon) {
-    this.setState({ pokemon: pokemon });
+    this.setState({ pokemon });
   },
 
   updateAlgorithm(algorithm) {
-    this.setState({ algorithm: algorithm });
+    this.setState({ algorithm });
   },
 
   render() {
     let pokeDisplay = "";
-    let state = this.state;
+    const state = this.state;
 
     if (state.level && state.nature && state.pokemon && state.algorithm) {
       const leveled = leveler(

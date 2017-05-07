@@ -60,7 +60,7 @@ export const pokemonSelectorProps = update => {
     }
 
     options[poke.name] = poke;
-    displays.push({ value: poke.name, label: label });
+    displays.push({ value: poke.name, label });
   });
 
   return { update, displays, options };
@@ -74,9 +74,8 @@ export const algorithmSelectorProps = update => {
 
       if (canRaiseStat(originalStats, currentStats, nextStat)) {
         return nextStat;
-      } else {
-        return options["random"](originalStats, currentStats);
       }
+      return options.random(originalStats, currentStats);
     },
     even: (originalStats, currentStats) => {
       return Object.keys(originalStats).reduce((current, stat) => {
@@ -87,9 +86,8 @@ export const algorithmSelectorProps = update => {
           canRaiseStat(originalStats, currentStats, stat)
         ) {
           return stat;
-        } else {
-          return current;
         }
+        return current;
       }, null);
     }
   };

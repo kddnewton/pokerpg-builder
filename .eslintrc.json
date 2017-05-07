@@ -6,6 +6,7 @@
   },
   "rules": {
     "comma-dangle": 0,
-    "quotes": [2, "double"]
+    "quotes": [2, "double"],
+    "radix": 0
   }
 }
