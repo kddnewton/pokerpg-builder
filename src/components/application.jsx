@@ -1,5 +1,5 @@
 import React from "react";
-import "react-select/dist/react-select";
+import "react-select/dist/react-select.css";
 
 import Selector from "./selector";
 import PokeDisplay from "./poke-display";

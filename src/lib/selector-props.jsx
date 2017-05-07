@@ -1,13 +1,15 @@
+import natureConfig from "../config/natures";
+import pokemonConfig from "../config/pokemon";
+
 const canRaiseStat = (originalStats, currentStats, nextStat) => {
   const compareStat = (valueA, valueB) => (valueA > valueB ? 1 : -1);
 
-  return Object.keys(originalStats).every(statName => {
-    return (
-      originalStats[statName] == originalStats[nextStat] ||
-      compareStat(originalStats[statName], originalStats[nextStat]) ==
+  return Object.keys(originalStats).every(
+    statName =>
+      originalStats[statName] === originalStats[nextStat] ||
+      compareStat(originalStats[statName], originalStats[nextStat]) ===
         compareStat(currentStats[statName], currentStats[nextStat] + 1)
-    );
-  });
+  );
 };
 
 export const levelSelectorProps = update => {
@@ -26,7 +28,7 @@ export const natureSelectorProps = update => {
   const options = {};
   const displays = [];
 
-  require("../config/natures").forEach(nature => {
+  natureConfig.forEach(nature => {
     options[nature.Nature] = nature;
     displays.push({ value: nature.Nature, label: nature.Nature });
   });
@@ -38,7 +40,7 @@ export const pokemonSelectorProps = update => {
   const options = {};
   const displays = [];
 
-  require("../config/pokemon").forEach(spec => {
+  pokemonConfig.forEach(spec => {
     if (!spec.Name) {
       return;
     }
@@ -77,8 +79,8 @@ export const algorithmSelectorProps = update => {
       }
       return options.random(originalStats, currentStats);
     },
-    even: (originalStats, currentStats) => {
-      return Object.keys(originalStats).reduce((current, stat) => {
+    even: (originalStats, currentStats) =>
+      Object.keys(originalStats).reduce((current, stat) => {
         const delta = currentStats[stat] - originalStats[stat];
         if (
           (current === null ||
@@ -88,8 +90,7 @@ export const algorithmSelectorProps = update => {
           return stat;
         }
         return current;
-      }, null);
-    }
+      }, null)
   };
 
   const displays = [
