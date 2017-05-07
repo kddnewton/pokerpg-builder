@@ -4,8 +4,8 @@
   "description": "PokeRPG Pokemon Builder",
   "private": true,
   "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-select": "^1.0.0-rc.3"
   },
   "devDependencies": {
