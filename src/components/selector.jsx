@@ -1,23 +1,23 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import Select from "react-select";
 
-const Selector = React.createClass({
-  getInitialState() {
-    return { selected: null };
-  },
+class Selector extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { selected: null };
+    this.update = this.update.bind(this);
+  }
 
   random() {
     const displays = this.props.displays;
     this.update(displays[Math.floor(Math.random() * displays.length)]);
-  },
+  }
 
-  update(newValue) {
-    if (!newValue) {
-      newValue = { value: null };
-    }
-    this.setState({ selected: newValue.value });
-    this.props.update(this.props.options[newValue.value]);
-  },
+  update(value) {
+    const selected = value ? value.value : null;
+    this.setState({ selected });
+    this.props.update(this.props.options[selected]);
+  }
 
   render() {
     return (
@@ -28,12 +28,6 @@ const Selector = React.createClass({
       />
     );
   }
-});
-
-Selector.propTypes = {
-  options: PropTypes.any,
-  displays: PropTypes.arrayOf(PropTypes.any).isRequired,
-  update: PropTypes.func.isRequired
-};
+}
 
 export default Selector;

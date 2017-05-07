@@ -39,11 +39,11 @@ module.exports = {
         options: { name: "favicon.png" }
       },
       {
-        test: /PokeRPG\-Base\-Stat\-Info\.pdf$/,
+        test: /PokeRPG-Base-Stat-Info\.pdf$/,
         loader: "file-loader",
         options: { name: "PokeRPG-Base-Stat-Info.pdf" }
       }
     ]
   },
-  plugins: plugins
+  plugins
 };

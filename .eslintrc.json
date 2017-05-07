@@ -1,0 +1,20 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "arrow-body-style": [2, "as-needed"],
+    "arrow-parens": [2, "as-needed"],
+    "comma-dangle": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "no-mixed-operators": 0,
+    "no-param-reassign": 0,
+    "quotes": [2, "double"],
+    "radix": 0,
+    "react/prop-types": 0
+  }
+}
