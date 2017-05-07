@@ -1,4 +1,4 @@
-import React, { PropTypes } from "react";
+import React from "react";
 
 const PokeDisplay = ({ poke, level }) => {
   const hitPointsDisplay = level + poke.hp * 3 + 10;
@@ -27,11 +27,6 @@ const PokeDisplay = ({ poke, level }) => {
       </div>
     </div>
   );
-};
-
-PokeDisplay.propTypes = {
-  poke: PropTypes.any.isRequired,
-  level: PropTypes.number.isRequired
 };
 
 export default PokeDisplay;

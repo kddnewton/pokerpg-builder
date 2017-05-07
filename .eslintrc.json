@@ -12,7 +12,9 @@
     "import/extensions": 0,
     "import/no-unresolved": 0,
     "no-mixed-operators": 0,
+    "no-param-reassign": 0,
     "quotes": [2, "double"],
-    "radix": 0
+    "radix": 0,
+    "react/prop-types": 0
   }
 }

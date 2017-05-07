@@ -15,36 +15,16 @@ import leveler from "../lib/leveler";
 import "../application";
 import pdfPath from "../PokeRPG-Base-Stat-Info";
 
-export default React.createClass({
-  getInitialState() {
-    return {
+export default class Application extends React.Component {
+  constructor() {
+    super();
+    this.state = {
       level: null,
       nature: null,
       pokemon: null,
       algorithm: null
     };
-  },
-
-  randomNature(event) {
-    event.preventDefault();
-    this.refs.nature.random();
-  },
-
-  updateLevel(level) {
-    this.setState({ level });
-  },
-
-  updateNature(nature) {
-    this.setState({ nature });
-  },
-
-  updatePokemon(pokemon) {
-    this.setState({ pokemon });
-  },
-
-  updateAlgorithm(algorithm) {
-    this.setState({ algorithm });
-  },
+  }
 
   render() {
     let pokeDisplay = "";
@@ -79,7 +59,11 @@ export default React.createClass({
           </div>
           <div className="row">
             <div className={defaultClassName}>
-              <Selector {...pokemonSelectorProps(this.updatePokemon)} />
+              <Selector
+                {...pokemonSelectorProps(pokemon => {
+                  this.setState({ pokemon });
+                })}
+              />
             </div>
           </div>
           <div className="row">
@@ -89,7 +73,11 @@ export default React.createClass({
           </div>
           <div className="row">
             <div className={defaultClassName}>
-              <Selector {...levelSelectorProps(this.updateLevel)} />
+              <Selector
+                {...levelSelectorProps(level => {
+                  this.setState({ level });
+                })}
+              />
             </div>
           </div>
           <div className="row">
@@ -99,18 +87,24 @@ export default React.createClass({
           </div>
           <div className="row">
             <div className="col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
-              <a
+              <button
                 className="btn btn-primary"
-                href="#"
-                onClick={this.randomNature}
+                onClick={event => {
+                  event.preventDefault();
+                  this.natureSelector.random();
+                }}
               >
                 Random
-              </a>
+              </button>
             </div>
             <div className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5">
               <Selector
-                ref="nature"
-                {...natureSelectorProps(this.updateNature)}
+                ref={natureSelector => {
+                  this.natureSelector = natureSelector;
+                }}
+                {...natureSelectorProps(nature => {
+                  this.setState({ nature });
+                })}
               />
             </div>
           </div>
@@ -121,7 +115,11 @@ export default React.createClass({
           </div>
           <div className="row">
             <div className={defaultClassName}>
-              <Selector {...algorithmSelectorProps(this.updateAlgorithm)} />
+              <Selector
+                {...algorithmSelectorProps(algorithm => {
+                  this.setState({ algorithm });
+                })}
+              />
             </div>
           </div>
           <div className="row">
@@ -133,4 +131,4 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
