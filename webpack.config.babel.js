@@ -2,7 +2,10 @@ import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import path from "path";
 
-const styleExtractor = new ExtractTextPlugin("[name].css", { allChunks: true });
+const styleExtractor = new ExtractTextPlugin({
+  filename: "[name].css",
+  allChunks: true
+});
 const plugins = [styleExtractor];
 
 if (process.env.NODE_ENV === "production") {
@@ -16,19 +19,29 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-    extensions: ["", ".js", ".jsx", ".css", ".csv", ".png", ".pdf"]
+    extensions: [".js", ".jsx", ".css", ".csv", ".png", ".pdf"]
   },
   module: {
-    loaders: [
-      { test: /\.jsx?$/, loader: "babel", exclude: /node_modules/ },
-      { test: /\.json$/, loader: "json" },
-      { test: /\.csv$/, loader: "dsv" },
-      { test: /\.css$/, loader: styleExtractor.extract("style", "css") },
-      { test: /favicon\.png$/, loader: "file", query: { name: "favicon.png" } },
+    rules: [
+      { test: /\.jsx?$/, use: "babel-loader", exclude: /node_modules/ },
+      { test: /\.json$/, use: "json-loader" },
+      { test: /\.csv$/, use: "dsv-loader" },
+      {
+        test: /\.css$/,
+        use: styleExtractor.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
+      {
+        test: /favicon\.png$/,
+        loader: "file-loader",
+        options: { name: "favicon.png" }
+      },
       {
         test: /PokeRPG\-Base\-Stat\-Info\.pdf$/,
-        loader: "file",
-        query: { name: "PokeRPG-Base-Stat-Info.pdf" }
+        loader: "file-loader",
+        options: { name: "PokeRPG-Base-Stat-Info.pdf" }
       }
     ]
   },

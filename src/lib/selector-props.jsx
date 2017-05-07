@@ -1,10 +1,12 @@
 const canRaiseStat = (originalStats, currentStats, nextStat) => {
-  const compareStat = (valueA, valueB) => valueA > valueB ? 1 : -1;
+  const compareStat = (valueA, valueB) => (valueA > valueB ? 1 : -1);
 
   return Object.keys(originalStats).every(statName => {
-    return originalStats[statName] == originalStats[nextStat] ||
+    return (
+      originalStats[statName] == originalStats[nextStat] ||
       compareStat(originalStats[statName], originalStats[nextStat]) ==
-        compareStat(currentStats[statName], currentStats[nextStat] + 1);
+        compareStat(currentStats[statName], currentStats[nextStat] + 1)
+    );
   });
 };
 
@@ -79,7 +81,11 @@ export const algorithmSelectorProps = update => {
     even: (originalStats, currentStats) => {
       return Object.keys(originalStats).reduce((current, stat) => {
         const delta = currentStats[stat] - originalStats[stat];
-        if ((current === null || delta < (currentStats[current] - originalStats[current])) && canRaiseStat(originalStats, currentStats, stat)) {
+        if (
+          (current === null ||
+            delta < currentStats[current] - originalStats[current]) &&
+          canRaiseStat(originalStats, currentStats, stat)
+        ) {
           return stat;
         } else {
           return current;
