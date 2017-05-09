@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-class Selector extends React.Component {
+export default class Selector extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selected: null };
@@ -29,5 +29,3 @@ class Selector extends React.Component {
     );
   }
 }
-
-export default Selector;
