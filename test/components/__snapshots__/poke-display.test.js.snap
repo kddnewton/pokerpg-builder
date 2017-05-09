@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays consistently 1`] = `
+<div
+  className="well poke-display clearfix"
+>
+  <div
+    className="col-xs-6"
+  >
+    <ul
+      className="list-unstyled text-right strong"
+    >
+      <li>
+        HP
+      </li>
+      <li>
+        Attack
+      </li>
+      <li>
+        Defense
+      </li>
+      <li>
+        Special Attack
+      </li>
+      <li>
+        Special Defense
+      </li>
+      <li>
+        Speed
+      </li>
+    </ul>
+  </div>
+  <div
+    className="col-xs-6"
+  >
+    <ul
+      className="list-unstyled"
+    >
+      <li>
+        26
+      </li>
+      <li>
+        3
+      </li>
+      <li>
+        4
+      </li>
+      <li>
+        5
+      </li>
+      <li>
+        6
+      </li>
+      <li>
+        7
+      </li>
+    </ul>
+  </div>
+</div>
+`;
