@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+find . |
+  grep -v node_modules | grep -v docs | grep -v test | grep '^.*jsx\?$' |
+  xargs $(npm bin)/prettier --write
