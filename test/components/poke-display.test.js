@@ -6,6 +6,6 @@ test("displays consistently", () => {
   const pokemon = { hp: 2, attack: 3, defense: 4, sAtk: 5, sDef: 6, speed: 7 };
   const component = renderer.create(<PokeDisplay poke={pokemon} level={10} />);
 
-  let tree = component.toJSON();
+  const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
