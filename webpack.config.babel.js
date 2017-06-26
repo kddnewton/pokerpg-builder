@@ -6,7 +6,11 @@ const styleExtractor = new ExtractTextPlugin({
   filename: "[name].css",
   allChunks: true
 });
-const plugins = [styleExtractor];
+
+const plugins = [
+  styleExtractor,
+  new webpack.optimize.ModuleConcatenationPlugin()
+];
 
 if (process.env.NODE_ENV === "production") {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
