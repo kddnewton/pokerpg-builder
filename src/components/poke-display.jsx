@@ -17,12 +17,24 @@ const PokeDisplay = ({ poke, level }) => {
       </div>
       <div className="col-xs-6">
         <ul className="list-unstyled">
-          <li>{hitPointsDisplay}</li>
-          <li>{poke.attack}</li>
-          <li>{poke.defense}</li>
-          <li>{poke.sAtk}</li>
-          <li>{poke.sDef}</li>
-          <li>{poke.speed}</li>
+          <li>
+            {hitPointsDisplay}
+          </li>
+          <li>
+            {poke.attack}
+          </li>
+          <li>
+            {poke.defense}
+          </li>
+          <li>
+            {poke.sAtk}
+          </li>
+          <li>
+            {poke.sDef}
+          </li>
+          <li>
+            {poke.speed}
+          </li>
         </ul>
       </div>
     </div>
