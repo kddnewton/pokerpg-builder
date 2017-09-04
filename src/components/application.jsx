@@ -123,9 +123,7 @@ export default class Application extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className={defaultClassName}>
-              {pokeDisplay}
-            </div>
+            <div className={defaultClassName}>{pokeDisplay}</div>
           </div>
         </div>
       </div>
