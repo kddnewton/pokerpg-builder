@@ -9,7 +9,7 @@ export default class Selector extends React.Component {
   }
 
   random() {
-    const displays = this.props.displays;
+    const { displays } = this.props;
     this.update(displays[Math.floor(Math.random() * displays.length)]);
   }
 
