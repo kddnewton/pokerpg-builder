@@ -16,8 +16,9 @@ import "../application";
 import pdfPath from "../PokeRPG-Base-Stat-Info";
 
 export default class Application extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       level: null,
       nature: null,
@@ -28,16 +29,11 @@ export default class Application extends React.Component {
 
   render() {
     let pokeDisplay = "";
-    const state = this.state;
+    const { level, nature, pokemon, algorithm } = this.state;
 
-    if (state.level && state.nature && state.pokemon && state.algorithm) {
-      const leveled = leveler(
-        state.level,
-        state.nature,
-        state.pokemon,
-        state.algorithm
-      );
-      pokeDisplay = <PokeDisplay poke={leveled} level={state.level} />;
+    if (level && nature && pokemon && algorithm) {
+      const leveled = leveler(level, nature, pokemon, algorithm);
+      pokeDisplay = <PokeDisplay poke={leveled} level={level} />;
     }
 
     const defaultClassName =
@@ -60,8 +56,8 @@ export default class Application extends React.Component {
           <div className="row">
             <div className={defaultClassName}>
               <Selector
-                {...pokemonSelectorProps(pokemon => {
-                  this.setState({ pokemon });
+                {...pokemonSelectorProps(pokemonOption => {
+                  this.setState({ pokemon: pokemonOption });
                 })}
               />
             </div>
@@ -74,8 +70,8 @@ export default class Application extends React.Component {
           <div className="row">
             <div className={defaultClassName}>
               <Selector
-                {...levelSelectorProps(level => {
-                  this.setState({ level });
+                {...levelSelectorProps(levelOption => {
+                  this.setState({ level: levelOption });
                 })}
               />
             </div>
@@ -102,8 +98,8 @@ export default class Application extends React.Component {
                 ref={natureSelector => {
                   this.natureSelector = natureSelector;
                 }}
-                {...natureSelectorProps(nature => {
-                  this.setState({ nature });
+                {...natureSelectorProps(natureOption => {
+                  this.setState({ nature: natureOption });
                 })}
               />
             </div>
@@ -116,8 +112,8 @@ export default class Application extends React.Component {
           <div className="row">
             <div className={defaultClassName}>
               <Selector
-                {...algorithmSelectorProps(algorithm => {
-                  this.setState({ algorithm });
+                {...algorithmSelectorProps(algorithmOption => {
+                  this.setState({ algorithm: algorithmOption });
                 })}
               />
             </div>
