@@ -1,4 +1,4 @@
-import leveler from "../../src/lib/leveler";
+import leveler from "../leveler";
 
 test("levels up a basic pokemon", () => {
   const nature = { Raise: "attack", Lower: "defense" };

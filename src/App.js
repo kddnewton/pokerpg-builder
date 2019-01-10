@@ -1,4 +1,4 @@
-import React, { Component, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import Select from "react-select";
 
 import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "./options";

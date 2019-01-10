@@ -6,9 +6,11 @@ const canRaiseStat = (originalStats, currentStats, nextStat) => {
 
   return Object.keys(originalStats).every(
     statName => (
-      originalStats[statName] === originalStats[nextStat] ||
-      compareStat(originalStats[statName], originalStats[nextStat]) ===
+      originalStats[statName] === originalStats[nextStat]
+      || (
+        compareStat(originalStats[statName], originalStats[nextStat]) ===
         compareStat(currentStats[statName], currentStats[nextStat] + 1)
+      )
     )
   );
 };
@@ -26,11 +28,8 @@ const raiseRandomStat = (originalStats, currentStats) => {
 const raiseEvenStat = (originalStats, currentStats) => (
   Object.keys(originalStats).reduce((current, stat) => {
     const delta = currentStats[stat] - originalStats[stat];
-    if (
-      (current === null ||
-        delta < currentStats[current] - originalStats[current]) &&
-      canRaiseStat(originalStats, currentStats, stat)
-    ) {
+
+    if ((current === null || delta < currentStats[current] - originalStats[current]) && canRaiseStat(originalStats, currentStats, stat)) {
       return stat;
     }
     return current;
