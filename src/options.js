@@ -1,5 +1,5 @@
-import natures from "../config/natures";
-import pokemon from "../config/pokemon";
+import natures from "./natures";
+import pokemon from "./pokemon";
 
 const canRaiseStat = (originalStats, currentStats, nextStat) => {
   const compareStat = (valueA, valueB) => (valueA > valueB ? 1 : -1);

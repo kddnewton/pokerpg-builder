@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import Select from "react-select";
 
-import PokeDisplay from "./PokeDisplay";
+import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "./options";
+import leveler from "./leveler";
 
-import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "../lib/options";
-import leveler from "../lib/leveler";
-
-import "../application";
+import "./styles";
 
 const Row = ({ children }) => (
   <div className="row">
@@ -25,6 +23,31 @@ const Input = ({ children, name }) => (
       {children}
     </Row>
   </>
+);
+
+const PokeDisplay = ({ poke, level }) => (
+  <div className="well poke-display clearfix">
+    <div className="col-xs-6">
+      <ul className="list-unstyled text-right strong">
+        <li>HP</li>
+        <li>Attack</li>
+        <li>Defense</li>
+        <li>Special Attack</li>
+        <li>Special Defense</li>
+        <li>Speed</li>
+      </ul>
+    </div>
+    <div className="col-xs-6">
+      <ul className="list-unstyled">
+        <li>{level + poke.hp * 3 + 10}</li>
+        <li>{poke.attack}</li>
+        <li>{poke.defense}</li>
+        <li>{poke.sAtk}</li>
+        <li>{poke.sDef}</li>
+        <li>{poke.speed}</li>
+      </ul>
+    </div>
+  </div>
 );
 
 class Application extends Component {
