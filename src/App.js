@@ -61,12 +61,6 @@ const Application = () => {
     setNature(natureOptions[Math.floor(Math.random() * natureOptions.length)]);
   });
 
-  let pokeDisplay = "";
-  if (level && nature && pokemon && algorithm) {
-    const leveled = leveler(level.value, nature.value, pokemon.value, algorithm.value);
-    pokeDisplay = <PokeDisplay poke={leveled} level={level.value} />;
-  }
-
   return (
     <>
       <header>
@@ -122,7 +116,14 @@ const Application = () => {
             onChange={setAlgorithm}
           />
         </Input>
-        <Row>{pokeDisplay}</Row>
+        <Row>
+          {level && nature && pokemon && algorithm && (
+            <PokeDisplay
+              poke={leveler(level.value, nature.value, pokemon.value, algorithm.value)}
+              level={level.value}
+            />
+          )}
+        </Row>
       </div>
     </>
   );
