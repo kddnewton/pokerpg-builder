@@ -7,7 +7,6 @@ import { levelSelectorProps, natureSelectorProps, pokemonSelectorProps, algorith
 import leveler from "../lib/leveler";
 
 import "../application";
-import pdfPath from "../PokeRPG-Base-Stat-Info";
 
 class Application extends Component {
   constructor(props) {
@@ -30,14 +29,13 @@ class Application extends Component {
       pokeDisplay = <PokeDisplay poke={leveled} level={level} />;
     }
 
-    const defaultClassName =
-      "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3";
+    const defaultClassName = "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3";
 
     return (
       <div>
         <header>
           PokeRPG Pokemon Builder
-          <a href={pdfPath} className="pull-right">
+          <a href="PokeRPG-Base-Stat-Info.pdf" className="pull-right">
             <span className="glyphicon glyphicon-file" /> (PDF)
           </a>
         </header>

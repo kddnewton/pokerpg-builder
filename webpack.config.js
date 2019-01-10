@@ -7,7 +7,7 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-    extensions: [".js", ".css", ".csv", ".png", ".pdf"]
+    extensions: [".js", ".css", ".csv"]
   },
   module: {
     rules: [
@@ -17,17 +17,7 @@ module.exports = {
         use: [{ loader: "style-loader" }, { loader: "css-loader" }],
         exclude: /node_modules/
       },
-      { test: /\.csv$/, use: "dsv-loader" },
-      {
-        test: /favicon\.png$/,
-        loader: "file-loader",
-        options: { name: "favicon.png" }
-      },
-      {
-        test: /PokeRPG-Base-Stat-Info\.pdf$/,
-        loader: "file-loader",
-        options: { name: "PokeRPG-Base-Stat-Info.pdf" }
-      }
+      { test: /\.csv$/, use: "dsv-loader" }
     ]
   },
   devServer: {
