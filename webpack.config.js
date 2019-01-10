@@ -7,17 +7,17 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-    extensions: [".js", ".jsx", ".css", ".csv", ".png", ".pdf"]
+    extensions: [".js", ".css", ".csv", ".png", ".pdf"]
   },
   module: {
     rules: [
-      { test: /\.jsx?$/, use: "babel-loader", exclude: /node_modules/ },
-      { test: /\.csv$/, use: "dsv-loader" },
+      { test: /\.js$/, use: "babel-loader", exclude: /node_modules/ },
       {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }],
         exclude: /node_modules/
       },
+      { test: /\.csv$/, use: "dsv-loader" },
       {
         test: /favicon\.png$/,
         loader: "file-loader",

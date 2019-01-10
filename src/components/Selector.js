@@ -26,7 +26,7 @@ class Selector extends Component {
     const { displays } = this.props;
     const { selected } = this.state;
 
-    return <Select options={displays} onChange={this.update} value={selected} />;
+    return <Select options={displays} onChange={this.update} value={selected} className="selector" />;
   }
 }
 

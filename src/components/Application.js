@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Selector from "./selector";
-import PokeDisplay from "./poke-display";
+import Selector from "./Selector";
+import PokeDisplay from "./PokeDisplay";
 
 import { levelSelectorProps, natureSelectorProps, pokemonSelectorProps, algorithmSelectorProps } from "../lib/selector-props";
 import leveler from "../lib/leveler";
