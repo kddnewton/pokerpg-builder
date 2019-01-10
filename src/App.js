@@ -10,12 +10,12 @@ const makePokemonOpt = spec => {
   const value = {
     number: spec.Number,
     name: spec.Name,
-    hp: parseInt(spec.HP),
-    attack: parseInt(spec.Attack),
-    defense: parseInt(spec.Defense),
-    sAtk: parseInt(spec["Special Attack"]),
-    sDef: parseInt(spec["Special Defense"]),
-    speed: parseInt(spec.Speed)
+    hp: parseInt(spec.HP, 10),
+    attack: parseInt(spec.Attack, 10),
+    defense: parseInt(spec.Defense, 10),
+    sAtk: parseInt(spec["Special Attack"], 10),
+    sDef: parseInt(spec["Special Defense"], 10),
+    speed: parseInt(spec.Speed, 10)
   };
 
   let label = value.name;
