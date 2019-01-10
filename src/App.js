@@ -63,28 +63,14 @@ const Input = ({ children, name }) => (
 );
 
 const PokeDisplay = ({ poke, level }) => (
-  <div className="well poke-display clearfix">
-    <div className="col-xs-6">
-      <ul className="list-unstyled text-right strong">
-        <li>HP</li>
-        <li>Attack</li>
-        <li>Defense</li>
-        <li>Special Attack</li>
-        <li>Special Defense</li>
-        <li>Speed</li>
-      </ul>
-    </div>
-    <div className="col-xs-6">
-      <ul className="list-unstyled">
-        <li>{level + poke.hp * 3 + 10}</li>
-        <li>{poke.attack}</li>
-        <li>{poke.defense}</li>
-        <li>{poke.sAtk}</li>
-        <li>{poke.sDef}</li>
-        <li>{poke.speed}</li>
-      </ul>
-    </div>
-  </div>
+  <ul className="list-unstyled">
+    <li>{level + poke.hp * 3 + 10}</li>
+    <li>{poke.attack}</li>
+    <li>{poke.defense}</li>
+    <li>{poke.sAtk}</li>
+    <li>{poke.sDef}</li>
+    <li>{poke.speed}</li>
+  </ul>
 );
 
 const Application = () => {
@@ -128,11 +114,7 @@ const Application = () => {
         </Row>
         <div className="row">
           <div className="col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={onRandomNatureClick}
-            >
+            <button type="button" className="btn btn-primary" onClick={onRandomNatureClick}>
               Random
             </button>
           </div>
@@ -154,11 +136,25 @@ const Application = () => {
           />
         </Input>
         <Row>
-          {levelOption && natureOption && pokemonOption && algorithmOption && (
-            <PokeDisplay
-              poke={leveler(levelOption.value, natureOption.value, pokemonOption.value, algorithmOption.value)}
-              level={levelOption.value}
-            />
+          {levelOption && natureOption && pokemonOption && algorithmOption && (  
+            <div className="well poke-display clearfix">
+              <div className="col-xs-6">
+                <ul className="list-unstyled text-right strong">
+                  <li>HP</li>
+                  <li>Attack</li>
+                  <li>Defense</li>
+                  <li>Special Attack</li>
+                  <li>Special Defense</li>
+                  <li>Speed</li>
+                </ul>
+              </div>
+              <div className="col-xs-6">
+                <PokeDisplay
+                  poke={leveler(levelOption.value, natureOption.value, pokemonOption.value, algorithmOption.value)}
+                  level={levelOption.value}
+                />
+              </div>
+            </div>
           )}
         </Row>
       </div>
