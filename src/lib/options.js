@@ -1,5 +1,5 @@
 import natures from "../config/natures";
-import pokemonConfig from "../config/pokemon";
+import pokemon from "../config/pokemon";
 
 const canRaiseStat = (originalStats, currentStats, nextStat) => {
   const compareStat = (valueA, valueB) => (valueA > valueB ? 1 : -1);
@@ -20,11 +20,9 @@ export const natureOptions = natures.map(nature => ({
   label: nature.Nature, value: nature
 }));
 
-export const pokemonOptions = [];
-
-pokemonConfig.forEach(spec => {
+export const pokemonOptions = pokemon.reduce((accum, spec) => {
   if (!spec.Name) {
-    return;
+    return accum;
   }
 
   const poke = {
@@ -43,8 +41,8 @@ pokemonConfig.forEach(spec => {
     label = `(#${poke.number}) ${poke.name}`;
   }
 
-  pokemonOptions.push({ value: poke, label: poke.name });
-});
+  return [...accum, { label: poke.name, value: poke }];
+}, []);
 
 export const algorithmOptions = [
   {

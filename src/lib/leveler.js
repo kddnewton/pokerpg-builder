@@ -27,10 +27,8 @@ const applyLevel = (level, pokemon, getNextStat) => {
   return pokemon;
 };
 
-export default (level, nature, pokemon, algorithm) => {
-  // Clone the pokemon object so that the option from the select doesn't get
-  // accidentally modified.
-  const cloned = Object.assign({}, pokemon);
+const leveler = (level, nature, pokemon, algorithm) => (
+  applyLevel(level, applyNature(nature, { ...pokemon }), algorithm)
+);
 
-  return applyLevel(level, applyNature(nature, cloned), algorithm);
-};
+export default leveler;

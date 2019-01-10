@@ -3,7 +3,7 @@ import Select from "react-select";
 
 import PokeDisplay from "./PokeDisplay";
 
-import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "../lib/selector-props";
+import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "../lib/options";
 import leveler from "../lib/leveler";
 
 import "../application";
