@@ -1,10 +1,47 @@
 import React, { useState, useCallback } from "react";
 import Select from "react-select";
 
-import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "./options";
+import pokemon from "./pokemon";
+import natures from "./natures";
 import leveler from "./leveler";
-
 import "./styles";
+
+const pokemonOptions = pokemon.reduce((accum, spec) => {
+  if (!spec.Name) {
+    return accum;
+  }
+
+  const poke = {
+    number: spec.Number,
+    name: spec.Name,
+    hp: parseInt(spec.HP),
+    attack: parseInt(spec.Attack),
+    defense: parseInt(spec.Defense),
+    sAtk: parseInt(spec["Special Attack"]),
+    sDef: parseInt(spec["Special Defense"]),
+    speed: parseInt(spec.Speed)
+  };
+
+  let label = poke.name;
+  if (poke.number) {
+    label = `(#${poke.number}) ${poke.name}`;
+  }
+
+  return [...accum, { label, value: poke }];
+}, []);
+
+const levelOptions = [...Array(100).keys()].map(level => ({
+  label: level + 1, value: level + 1
+}));
+
+const natureOptions = natures.map(nature => ({
+  label: nature.Nature, value: nature
+}));
+
+const algorithmOptions = [
+  { label: "Random", value: "Random" },
+  { label: "Even", value: "Even" }
+];
 
 const Row = ({ children }) => (
   <div className="row">
@@ -51,14 +88,14 @@ const PokeDisplay = ({ poke, level }) => (
 );
 
 const Application = () => {
-  const [level, setLevel] = useState(null);
-  const [nature, setNature] = useState(null);
-  const [pokemon, setPokemon] = useState(null);
-  const [algorithm, setAlgorithm] = useState(null);
+  const [levelOption, setLevelOption] = useState(null);
+  const [natureOption, setNatureOption] = useState(null);
+  const [pokemonOption, setPokemonOption] = useState(null);
+  const [algorithmOption, setAlgorithmOption] = useState(null);
 
   const onRandomNatureClick = useCallback(event => {
     event.preventDefault();
-    setNature(natureOptions[Math.floor(Math.random() * natureOptions.length)]);
+    setNatureOption(natureOptions[Math.floor(Math.random() * natureOptions.length)]);
   });
 
   return (
@@ -74,16 +111,16 @@ const Application = () => {
           <Select
             className="select"
             options={pokemonOptions}
-            value={pokemon}
-            onChange={setPokemon}
+            value={pokemonOption}
+            onChange={setPokemonOption}
           />
         </Input>
         <Input name="Level">
           <Select
             className="select"
             options={levelOptions}
-            value={level}
-            onChange={setLevel}
+            value={levelOption}
+            onChange={setLevelOption}
           />
         </Input>
         <Row>
@@ -103,8 +140,8 @@ const Application = () => {
             <Select
               className="select"
               options={natureOptions}
-              value={nature}
-              onChange={setNature}
+              value={natureOption}
+              onChange={setNatureOption}
             />
           </div>
         </div>
@@ -112,15 +149,15 @@ const Application = () => {
           <Select
             className="select"
             options={algorithmOptions}
-            value={algorithm}
-            onChange={setAlgorithm}
+            value={algorithmOption}
+            onChange={setAlgorithmOption}
           />
         </Input>
         <Row>
-          {level && nature && pokemon && algorithm && (
+          {levelOption && natureOption && pokemonOption && algorithmOption && (
             <PokeDisplay
-              poke={leveler(level.value, nature.value, pokemon.value, algorithm.value)}
-              level={level.value}
+              poke={leveler(levelOption.value, natureOption.value, pokemonOption.value, algorithmOption.value)}
+              level={levelOption.value}
             />
           )}
         </Row>
