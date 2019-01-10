@@ -31,12 +31,35 @@ class Application extends Component {
   constructor(props) {
     super(props);
 
+    this.natureSelector = React.createRef();
+
     this.state = {
       level: null,
       nature: null,
       pokemon: null,
       algorithm: null
     };
+
+    this.handlePokemonChange = this.handlePokemonChange.bind(this);
+    this.handleLevelChange = this.handleLevelChange.bind(this);
+    this.handleNatureChange = this.handleNatureChange.bind(this);
+    this.handleAlgorithmChange = this.handleAlgorithmChange.bind(this);
+  }
+
+  handlePokemonChange(pokemon) {
+    this.setState({ pokemon });
+  }
+
+  handleLevelChange(level) {
+    this.setState({ level });
+  }
+
+  handleNatureChange(nature) {
+    this.setState({ nature });
+  }
+
+  handleAlgorithmChange(algorithm) {
+    this.setState({ algorithm });
   }
 
   render() {
@@ -58,18 +81,10 @@ class Application extends Component {
         </header>
         <div className="container">
           <Input name="Pokemon">
-            <Selector
-              {...pokemonSelectorProps(pokemonOption => {
-                this.setState({ pokemon: pokemonOption });
-              })}
-            />
+            <Selector {...pokemonSelectorProps(this.handlePokemonChange)} />
           </Input>
           <Input name="Level">
-            <Selector
-              {...levelSelectorProps(levelOption => {
-                this.setState({ level: levelOption });
-              })}
-            />
+            <Selector {...levelSelectorProps(this.handleLevelChange)} />
           </Input>
           <Row>
             <strong>Nature</strong>
@@ -80,29 +95,18 @@ class Application extends Component {
                 className="btn btn-primary"
                 onClick={event => {
                   event.preventDefault();
-                  this.natureSelector.random();
+                  this.natureSelector.current.random();
                 }}
               >
                 Random
               </button>
             </div>
             <div className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5">
-              <Selector
-                ref={natureSelector => {
-                  this.natureSelector = natureSelector;
-                }}
-                {...natureSelectorProps(natureOption => {
-                  this.setState({ nature: natureOption });
-                })}
-              />
+              <Selector ref={this.natureSelector} {...natureSelectorProps(this.handleNatureChange)} />
             </div>
           </div>
           <Input name="Algorithm">
-            <Selector
-              {...algorithmSelectorProps(algorithmOption => {
-                this.setState({ algorithm: algorithmOption });
-              })}
-            />
+            <Selector {...algorithmSelectorProps(this.handleAlgorithmChange)} />
           </Input>
           <Row>{pokeDisplay}</Row>
         </div>
