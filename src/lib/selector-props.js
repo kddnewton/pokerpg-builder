@@ -12,7 +12,7 @@ const canRaiseStat = (originalStats, currentStats, nextStat) => {
   );
 };
 
-export const levelSelectorProps = update => {
+export const levelSelectorProps = () => {
   const options = {};
   const displays = [];
 
@@ -21,10 +21,10 @@ export const levelSelectorProps = update => {
     displays.push({ value: level + 1, label: level + 1 });
   });
 
-  return { update, displays, options };
+  return { displays, options };
 };
 
-export const natureSelectorProps = update => {
+export const natureSelectorProps = () => {
   const options = {};
   const displays = [];
 
@@ -33,10 +33,10 @@ export const natureSelectorProps = update => {
     displays.push({ value: nature.Nature, label: nature.Nature });
   });
 
-  return { update, displays, options };
+  return { displays, options };
 };
 
-export const pokemonSelectorProps = update => {
+export const pokemonSelectorProps = () => {
   const options = {};
   const displays = [];
 
@@ -65,10 +65,10 @@ export const pokemonSelectorProps = update => {
     displays.push({ value: poke.name, label });
   });
 
-  return { update, displays, options };
+  return { displays, options };
 };
 
-export const algorithmSelectorProps = update => {
+export const algorithmSelectorProps = () => {
   const options = {
     random: (originalStats, currentStats) => {
       const stats = Object.keys(originalStats);
@@ -98,5 +98,5 @@ export const algorithmSelectorProps = update => {
     { value: "even", label: "Even" }
   ];
 
-  return { update, displays, options };
+  return { displays, options };
 };

@@ -42,10 +42,10 @@ class Selector extends Component {
   }
 
   update(value) {
-    const { options, update } = this.props;
+    const { options, onChange } = this.props;
 
     this.setState({ selected: value });
-    update(options[value ? value.value : null]);
+    onChange(options[value ? value.value : null]);
   }
 
   render() {
@@ -110,10 +110,10 @@ class Application extends Component {
         </header>
         <div className="container">
           <Input name="Pokemon">
-            <Selector {...pokemonSelectorProps(this.handlePokemonChange)} />
+            <Selector {...pokemonSelectorProps()} onChange={this.handlePokemonChange} />
           </Input>
           <Input name="Level">
-            <Selector {...levelSelectorProps(this.handleLevelChange)} />
+            <Selector {...levelSelectorProps()} onChange={this.handleLevelChange} />
           </Input>
           <Row>
             <strong>Nature</strong>
@@ -121,6 +121,7 @@ class Application extends Component {
           <div className="row">
             <div className="col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
               <button
+                type="button"
                 className="btn btn-primary"
                 onClick={event => {
                   event.preventDefault();
@@ -131,11 +132,11 @@ class Application extends Component {
               </button>
             </div>
             <div className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5">
-              <Selector ref={this.natureSelector} {...natureSelectorProps(this.handleNatureChange)} />
+              <Selector ref={this.natureSelector} {...natureSelectorProps()} onChange={this.handleNatureChange} />
             </div>
           </div>
           <Input name="Algorithm">
-            <Selector {...algorithmSelectorProps(this.handleAlgorithmChange)} />
+            <Selector {...algorithmSelectorProps()} onChange={this.handleAlgorithmChange} />
           </Input>
           <Row>{pokeDisplay}</Row>
         </div>
