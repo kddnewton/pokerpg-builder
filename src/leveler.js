@@ -1,12 +1,14 @@
 const compareStat = (valueA, valueB) => (valueA > valueB ? 1 : -1);
 
-const canRaiseStat = (originalStats, currentStats, nextStat) => Object.keys(originalStats).every(statName => (
-  originalStats[statName] === originalStats[nextStat]
-  || (
-    compareStat(originalStats[statName], originalStats[nextStat]) ===
-    compareStat(currentStats[statName], currentStats[nextStat] + 1)
-  )
-));
+const canRaiseStat = (originalStats, currentStats, nextStat) => (
+  Object.keys(originalStats).every(statName => (
+    originalStats[statName] === originalStats[nextStat]
+    || (
+      compareStat(originalStats[statName], originalStats[nextStat])
+      === compareStat(currentStats[statName], currentStats[nextStat] + 1)
+    )
+  ))
+);
 
 const getNextRandomStat = (originalStats, currentStats) => {
   const stats = Object.keys(originalStats);
@@ -22,7 +24,11 @@ const getNextEvenStat = (originalStats, currentStats) => (
   Object.keys(originalStats).reduce((current, stat) => {
     const delta = currentStats[stat] - originalStats[stat];
 
-    if ((current === null || delta < currentStats[current] - originalStats[current]) && canRaiseStat(originalStats, currentStats, stat)) {
+    const hasGoodRatio = (
+      current === null || delta < currentStats[current] - originalStats[current]
+    );
+
+    if (hasGoodRatio && canRaiseStat(originalStats, currentStats, stat)) {
       return stat;
     }
     return current;

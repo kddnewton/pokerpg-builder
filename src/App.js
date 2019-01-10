@@ -2,9 +2,9 @@ import React, { useState, useCallback } from "react";
 import ReactSelect from "react-select";
 
 import leveler from "./leveler";
-import natures from "./natures";
-import pokemon from "./pokemon";
-import "./styles";
+import natures from "./natures.csv";
+import pokemon from "./pokemon.csv";
+import "./styles.css";
 
 const makePokemonOpt = spec => {
   const value = {

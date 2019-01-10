@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production --progress",
-    "lint": "eslint .",
-    "test": "jest"
+    "lint": "eslint ."
   },
   "author": "Kevin Deisz",
   "license": "MIT",
