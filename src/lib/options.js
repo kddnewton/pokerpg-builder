@@ -41,7 +41,7 @@ export const pokemonOptions = pokemon.reduce((accum, spec) => {
     label = `(#${poke.number}) ${poke.name}`;
   }
 
-  return [...accum, { label: poke.name, value: poke }];
+  return [...accum, { label, value: poke }];
 }, []);
 
 export const algorithmOptions = [

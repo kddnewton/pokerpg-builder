@@ -27,35 +27,6 @@ const Input = ({ children, name }) => (
   </>
 );
 
-class Selector extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { selected: null };
-    this.update = this.update.bind(this);
-  }
-
-  random() {
-    const { options } = this.props;
-
-    this.update(options[Math.floor(Math.random() * displays.length)]);
-  }
-
-  update(option) {
-    const { onChange } = this.props;
-
-    this.setState({ selected: option });
-    onChange(option ? option.value : null);
-  }
-
-  render() {
-    const { options } = this.props;
-    const { selected } = this.state;
-
-    return <Select options={options} onChange={this.update} value={selected} className="selector" />;
-  }
-}
-
 class Application extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +44,7 @@ class Application extends Component {
     this.handleLevelChange = this.handleLevelChange.bind(this);
     this.handleNatureChange = this.handleNatureChange.bind(this);
     this.handleAlgorithmChange = this.handleAlgorithmChange.bind(this);
+    this.handleRandomNatureClick = this.handleRandomNatureClick.bind(this);
   }
 
   handlePokemonChange(pokemon) {
@@ -91,13 +63,18 @@ class Application extends Component {
     this.setState({ algorithm });
   }
 
+  handleRandomNatureClick(event) {
+    event.preventDefault();
+    this.setState({ nature: natureOptions[Math.floor(Math.random() * natureOptions.length)] });
+  }
+
   render() {
-    let pokeDisplay = "";
     const { level, nature, pokemon, algorithm } = this.state;
 
+    let pokeDisplay = "";
     if (level && nature && pokemon && algorithm) {
-      const leveled = leveler(level, nature, pokemon, algorithm);
-      pokeDisplay = <PokeDisplay poke={leveled} level={level} />;
+      const leveled = leveler(level.value, nature.value, pokemon.value, algorithm.value);
+      pokeDisplay = <PokeDisplay poke={leveled} level={level.value} />;
     }
 
     return (
@@ -110,10 +87,20 @@ class Application extends Component {
         </header>
         <div className="container">
           <Input name="Pokemon">
-            <Selector options={pokemonOptions} onChange={this.handlePokemonChange} />
+            <Select
+              className="select"
+              options={pokemonOptions}
+              value={pokemon}
+              onChange={this.handlePokemonChange}
+            />
           </Input>
           <Input name="Level">
-            <Selector options={levelOptions} onChange={this.handleLevelChange} />
+            <Select
+              className="select"
+              options={levelOptions}
+              value={level}
+              onChange={this.handleLevelChange}
+            />
           </Input>
           <Row>
             <strong>Nature</strong>
@@ -123,20 +110,28 @@ class Application extends Component {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={event => {
-                  event.preventDefault();
-                  this.natureSelector.current.random();
-                }}
+                onClick={this.handleRandomNatureClick}
               >
                 Random
               </button>
             </div>
             <div className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5">
-              <Selector ref={this.natureSelector} options={natureOptions} onChange={this.handleNatureChange} />
+              <Select
+                ref={this.natureSelector}
+                className="select"
+                options={natureOptions}
+                value={nature}
+                onChange={this.handleNatureChange}
+              />
             </div>
           </div>
           <Input name="Algorithm">
-            <Selector options={algorithmOptions} onChange={this.handleAlgorithmChange} />
+            <Select
+              className="select"
+              options={algorithmOptions}
+              value={algorithm}
+              onChange={this.handleAlgorithmChange}
+            />
           </Input>
           <Row>{pokeDisplay}</Row>
         </div>
