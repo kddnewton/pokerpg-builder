@@ -1,31 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 import Select from "react-select";
 
-export default class Selector extends React.Component {
+class Selector extends Component {
   constructor(props) {
     super(props);
+
     this.state = { selected: null };
     this.update = this.update.bind(this);
   }
 
   random() {
     const { displays } = this.props;
+
     this.update(displays[Math.floor(Math.random() * displays.length)]);
   }
 
   update(value) {
-    const selected = value ? value.value : null;
-    this.setState({ selected });
-    this.props.update(this.props.options[selected]);
+    const { options, update } = this.props;
+
+    this.setState({ selected: value });
+    update(options[value ? value.value : null]);
   }
 
   render() {
-    return (
-      <Select
-        options={this.props.displays}
-        onChange={this.update}
-        value={this.state.selected}
-      />
-    );
+    const { displays } = this.props;
+    const { selected } = this.state;
+
+    return <Select options={displays} onChange={this.update} value={selected} />;
   }
 }
+
+export default Selector;

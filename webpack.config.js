@@ -1,20 +1,4 @@
-import webpack from "webpack";
-import ExtractTextPlugin from "extract-text-webpack-plugin";
-import path from "path";
-
-const styleExtractor = new ExtractTextPlugin({
-  filename: "[name].css",
-  allChunks: true
-});
-
-const plugins = [
-  styleExtractor,
-  new webpack.optimize.ModuleConcatenationPlugin()
-];
-
-if (process.env.NODE_ENV === "production") {
-  plugins.push(new webpack.optimize.UglifyJsPlugin());
-}
+const path = require("path");
 
 module.exports = {
   entry: "./src/index",
@@ -28,14 +12,11 @@ module.exports = {
   module: {
     rules: [
       { test: /\.jsx?$/, use: "babel-loader", exclude: /node_modules/ },
-      { test: /\.json$/, use: "json-loader" },
       { test: /\.csv$/, use: "dsv-loader" },
       {
         test: /\.css$/,
-        use: styleExtractor.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
+        exclude: /node_modules/
       },
       {
         test: /favicon\.png$/,
@@ -49,5 +30,7 @@ module.exports = {
       }
     ]
   },
-  plugins
+  devServer: {
+    contentBase: path.join(__dirname, "docs")
+  }
 };

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-export NODE_ENV=production
-rm -rf docs
-webpack --config webpack.config.babel.js --progress
-cp index.html docs/index.html

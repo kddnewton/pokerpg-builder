@@ -1,21 +1,15 @@
-import React from "react";
-import "react-select/dist/react-select.css";
+import React, { Component } from "react";
 
 import Selector from "./selector";
 import PokeDisplay from "./poke-display";
 
-import {
-  levelSelectorProps,
-  natureSelectorProps,
-  pokemonSelectorProps,
-  algorithmSelectorProps
-} from "../lib/selector-props";
+import { levelSelectorProps, natureSelectorProps, pokemonSelectorProps, algorithmSelectorProps } from "../lib/selector-props";
 import leveler from "../lib/leveler";
 
 import "../application";
 import pdfPath from "../PokeRPG-Base-Stat-Info";
 
-export default class Application extends React.Component {
+class Application extends Component {
   constructor(props) {
     super(props);
 
@@ -126,3 +120,5 @@ export default class Application extends React.Component {
     );
   }
 }
+
+export default Application;
