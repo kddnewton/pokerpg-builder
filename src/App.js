@@ -1,10 +1,38 @@
-import React, { useState, useCallback } from "react";
-import ReactSelect from "react-select";
+import React, { Suspense, lazy, useState, useCallback } from "react";
 
 import leveler from "./leveler";
 import natures from "./natures.csv";
 import pokemon from "./pokemon.csv";
 import "./styles.css";
+
+const ReactSelect = lazy(() => import("react-select"));
+const Select = props => <ReactSelect className="select" {...props} />;
+
+const makeContainer = className => ({ children }) => <div className={className}>{children}</div>;
+
+const Container = makeContainer("container");
+const Row = makeContainer("row");
+const Cols = makeContainer("col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3");
+const ButtonCols = makeContainer("col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3");
+const RestCols = makeContainer("col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5");
+const SplitCols = makeContainer("col-xs-6");
+const Well = makeContainer("well");
+
+const Button = ({ children, onClick }) => (
+  <button type="button" className="btn btn-primary" onClick={onClick}>
+    {children}
+  </button>
+);
+
+const Label = ({ children }) => (
+  <Row>
+    <Cols>
+      <strong>{children}</strong>
+    </Cols>
+  </Row>
+);
+
+const Text = ({ children }) => children;
 
 const makePokemonOpt = spec => {
   const value = {
@@ -31,34 +59,6 @@ const levelOpts = [...Array(100).keys()].map(level => ({ label: level + 1, value
 const natureOpts = natures.map(nature => ({ label: nature.Nature, value: nature }));
 const algorithmOpts = [{ label: "Random", value: "Random" }, { label: "Even", value: "Even" }];
 
-const makeContainer = className => ({ children }) => <div className={className}>{children}</div>;
-
-const Container = makeContainer("container");
-const Row = makeContainer("row");
-const Cols = makeContainer("col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3");
-const ButtonCols = makeContainer("col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3");
-const RestCols = makeContainer("col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5");
-const SplitCols = makeContainer("col-xs-6");
-const Well = makeContainer("well");
-
-const Button = ({ children, onClick }) => (
-  <button type="button" className="btn btn-primary" onClick={onClick}>
-    {children}
-  </button>
-);
-
-const Label = ({ children }) => (
-  <Row>
-    <Cols>
-      <strong>{children}</strong>
-    </Cols>
-  </Row>
-);
-
-const Select = props => <ReactSelect className="select" {...props} />;
-
-const Text = ({ children }) => children;
-
 const getRandomNature = () => natureOpts[Math.floor(Math.random() * natureOpts.length)];
 
 const App = () => {
@@ -70,6 +70,7 @@ const App = () => {
   const onRandomNatureClick = useCallback(() => setNatureOpt(getRandomNature()), []);
 
   const poke = leveler(levelOpt.value, natureOpt.value, pokemonOpt.value, algorithmOpt.value);
+  const hp = levelOpt.value + poke.hp * 3 + 10;
 
   return (
     <>
@@ -81,85 +82,87 @@ const App = () => {
           <Text>(PDF)</Text>
         </a>
       </header>
-      <Container>
-        <Label>
-          <Text>Pokemon</Text>
-        </Label>
-        <Row>
-          <Cols>
-            <Select options={pokemonOpts} value={pokemonOpt} onChange={setPokemonOpt} />
-          </Cols>
-        </Row>
-        <Label>
-          <Text>Level</Text>
-        </Label>
-        <Row>
-          <Cols>
-            <Select options={levelOpts} value={levelOpt} onChange={setLevelOpt} />
-          </Cols>
-        </Row>
-        <Label>
-          <Text>Nature</Text>
-        </Label>
-        <Row>
-          <ButtonCols>
-            <Button onClick={onRandomNatureClick}>
-              <Text>Random</Text>
-            </Button>
-          </ButtonCols>
-          <RestCols>
-            <Select options={natureOpts} value={natureOpt} onChange={setNatureOpt} />
-          </RestCols>
-        </Row>
-        <Label>
-          <Text>Algorithm</Text>
-        </Label>
-        <Row>
-          <Cols>
-            <Select options={algorithmOpts} value={algorithmOpt} onChange={setAlgorithmOpt} />
-          </Cols>
-        </Row>
-        <Row>
-          <Cols>
-            <Well>
-              <Row>
-                <SplitCols>
-                  <ul className="list-unstyled text-right strong">
-                    <li>
-                      <Text>HP</Text>
-                    </li>
-                    <li>
-                      <Text>Attack</Text>
-                    </li>
-                    <li>
-                      <Text>Defense</Text>
-                    </li>
-                    <li>
-                      <Text>Special Attack</Text>
-                    </li>
-                    <li>
-                      <Text>Special Defense</Text>
-                    </li>
-                    <li>
-                      <Text>Speed</Text>
-                    </li>
-                  </ul>
-                </SplitCols>
-                <SplitCols>
-                  <ul className="list-unstyled">
-                    <li>{levelOpt.value + poke.hp * 3 + 10}</li>
-                    <li>{poke.attack}</li>
-                    <li>{poke.defense}</li>
-                    <li>{poke.sAtk}</li>
-                    <li>{poke.sDef}</li>
-                    <li>{poke.speed}</li>
-                  </ul>
-                </SplitCols>
-              </Row>
-            </Well>
-          </Cols>
-        </Row>
-      </Container>
+      <Suspense fallback={null}>
+        <Container>
+          <Label>
+            <Text>Pokemon</Text>
+          </Label>
+          <Row>
+            <Cols>
+              <Select options={pokemonOpts} value={pokemonOpt} onChange={setPokemonOpt} />
+            </Cols>
+          </Row>
+          <Label>
+            <Text>Level</Text>
+          </Label>
+          <Row>
+            <Cols>
+              <Select options={levelOpts} value={levelOpt} onChange={setLevelOpt} />
+            </Cols>
+          </Row>
+          <Label>
+            <Text>Nature</Text>
+          </Label>
+          <Row>
+            <ButtonCols>
+              <Button onClick={onRandomNatureClick}>
+                <Text>Random</Text>
+              </Button>
+            </ButtonCols>
+            <RestCols>
+              <Select options={natureOpts} value={natureOpt} onChange={setNatureOpt} />
+            </RestCols>
+          </Row>
+          <Label>
+            <Text>Algorithm</Text>
+          </Label>
+          <Row>
+            <Cols>
+              <Select options={algorithmOpts} value={algorithmOpt} onChange={setAlgorithmOpt} />
+            </Cols>
+          </Row>
+          <Row>
+            <Cols>
+              <Well>
+                <Row>
+                  <SplitCols>
+                    <ul className="list-unstyled text-right strong">
+                      <li>
+                        <Text>HP</Text>
+                      </li>
+                      <li>
+                        <Text>Attack</Text>
+                      </li>
+                      <li>
+                        <Text>Defense</Text>
+                      </li>
+                      <li>
+                        <Text>Special Attack</Text>
+                      </li>
+                      <li>
+                        <Text>Special Defense</Text>
+                      </li>
+                      <li>
+                        <Text>Speed</Text>
+                      </li>
+                    </ul>
+                  </SplitCols>
+                  <SplitCols>
+                    <ul className="list-unstyled">
+                      <li>{hp}</li>
+                      <li>{poke.attack}</li>
+                      <li>{poke.defense}</li>
+                      <li>{poke.sAtk}</li>
+                      <li>{poke.sDef}</li>
+                      <li>{poke.speed}</li>
+                    </ul>
+                  </SplitCols>
+                </Row>
+              </Well>
+            </Cols>
+          </Row>
+        </Container>
+      </Suspense>
     </>
   );
 };
