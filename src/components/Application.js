@@ -8,6 +8,25 @@ import leveler from "../lib/leveler";
 
 import "../application";
 
+const Row = ({ children }) => (
+  <div className="row">
+    <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      {children}
+    </div>
+  </div>
+);
+
+const Input = ({ children, name }) => (
+  <>
+    <Row>
+      <strong>{name}</strong>
+    </Row>
+    <Row>
+      {children}
+    </Row>
+  </>
+);
+
 class Application extends Component {
   constructor(props) {
     super(props);
@@ -29,8 +48,6 @@ class Application extends Component {
       pokeDisplay = <PokeDisplay poke={leveled} level={level} />;
     }
 
-    const defaultClassName = "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3";
-
     return (
       <div>
         <header>
@@ -40,39 +57,23 @@ class Application extends Component {
           </a>
         </header>
         <div className="container">
-          <div className="row">
-            <div className={defaultClassName}>
-              <strong>Pokemon</strong>
-            </div>
-          </div>
-          <div className="row">
-            <div className={defaultClassName}>
-              <Selector
-                {...pokemonSelectorProps(pokemonOption => {
-                  this.setState({ pokemon: pokemonOption });
-                })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className={defaultClassName}>
-              <strong>Level</strong>
-            </div>
-          </div>
-          <div className="row">
-            <div className={defaultClassName}>
-              <Selector
-                {...levelSelectorProps(levelOption => {
-                  this.setState({ level: levelOption });
-                })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className={defaultClassName}>
-              <strong>Nature</strong>
-            </div>
-          </div>
+          <Input name="Pokemon">
+            <Selector
+              {...pokemonSelectorProps(pokemonOption => {
+                this.setState({ pokemon: pokemonOption });
+              })}
+            />
+          </Input>
+          <Input name="Level">
+            <Selector
+              {...levelSelectorProps(levelOption => {
+                this.setState({ level: levelOption });
+              })}
+            />
+          </Input>
+          <Row>
+            <strong>Nature</strong>
+          </Row>
           <div className="row">
             <div className="col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
               <button
@@ -96,23 +97,14 @@ class Application extends Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className={defaultClassName}>
-              <strong>Algorithm</strong>
-            </div>
-          </div>
-          <div className="row">
-            <div className={defaultClassName}>
-              <Selector
-                {...algorithmSelectorProps(algorithmOption => {
-                  this.setState({ algorithm: algorithmOption });
-                })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className={defaultClassName}>{pokeDisplay}</div>
-          </div>
+          <Input name="Algorithm">
+            <Selector
+              {...algorithmSelectorProps(algorithmOption => {
+                this.setState({ algorithm: algorithmOption });
+              })}
+            />
+          </Input>
+          <Row>{pokeDisplay}</Row>
         </div>
       </div>
     );
