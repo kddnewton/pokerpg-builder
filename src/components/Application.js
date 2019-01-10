@@ -3,7 +3,7 @@ import Select from "react-select";
 
 import PokeDisplay from "./PokeDisplay";
 
-import { levelSelectorProps, natureSelectorProps, pokemonSelectorProps, algorithmSelectorProps } from "../lib/selector-props";
+import { levelOptions, natureOptions, pokemonOptions, algorithmOptions } from "../lib/selector-props";
 import leveler from "../lib/leveler";
 
 import "../application";
@@ -36,23 +36,23 @@ class Selector extends Component {
   }
 
   random() {
-    const { displays } = this.props;
+    const { options } = this.props;
 
-    this.update(displays[Math.floor(Math.random() * displays.length)]);
+    this.update(options[Math.floor(Math.random() * displays.length)]);
   }
 
-  update(value) {
-    const { options, onChange } = this.props;
+  update(option) {
+    const { onChange } = this.props;
 
-    this.setState({ selected: value });
-    onChange(options[value ? value.value : null]);
+    this.setState({ selected: option });
+    onChange(option ? option.value : null);
   }
 
   render() {
-    const { displays } = this.props;
+    const { options } = this.props;
     const { selected } = this.state;
 
-    return <Select options={displays} onChange={this.update} value={selected} className="selector" />;
+    return <Select options={options} onChange={this.update} value={selected} className="selector" />;
   }
 }
 
@@ -101,7 +101,7 @@ class Application extends Component {
     }
 
     return (
-      <div>
+      <>
         <header>
           PokeRPG Pokemon Builder
           <a href="PokeRPG-Base-Stat-Info.pdf" className="pull-right">
@@ -110,10 +110,10 @@ class Application extends Component {
         </header>
         <div className="container">
           <Input name="Pokemon">
-            <Selector {...pokemonSelectorProps()} onChange={this.handlePokemonChange} />
+            <Selector options={pokemonOptions} onChange={this.handlePokemonChange} />
           </Input>
           <Input name="Level">
-            <Selector {...levelSelectorProps()} onChange={this.handleLevelChange} />
+            <Selector options={levelOptions} onChange={this.handleLevelChange} />
           </Input>
           <Row>
             <strong>Nature</strong>
@@ -132,15 +132,15 @@ class Application extends Component {
               </button>
             </div>
             <div className="col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5">
-              <Selector ref={this.natureSelector} {...natureSelectorProps()} onChange={this.handleNatureChange} />
+              <Selector ref={this.natureSelector} options={natureOptions} onChange={this.handleNatureChange} />
             </div>
           </div>
           <Input name="Algorithm">
-            <Selector {...algorithmSelectorProps()} onChange={this.handleAlgorithmChange} />
+            <Selector options={algorithmOptions} onChange={this.handleAlgorithmChange} />
           </Input>
           <Row>{pokeDisplay}</Row>
         </div>
-      </div>
+      </>
     );
   }
 }
