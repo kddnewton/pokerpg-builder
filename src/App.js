@@ -82,7 +82,7 @@ const Application = () => {
   const onRandomNatureClick = useCallback(event => {
     event.preventDefault();
     setNatureOption(natureOptions[Math.floor(Math.random() * natureOptions.length)]);
-  });
+  }, []);
 
   return (
     <>
