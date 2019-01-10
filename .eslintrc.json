@@ -17,6 +17,7 @@
     "object-curly-newline": 0,
     "quotes": [2, "double"],
     "radix": 0,
+    "react/jsx-filename-extension": ["warning", { "extensions": [".js"] }],
     "react/prop-types": 0
   }
 }
