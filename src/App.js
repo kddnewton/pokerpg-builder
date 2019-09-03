@@ -6,7 +6,14 @@ import pokemon from "./pokemon.csv";
 import "./styles.css";
 
 const ReactSelect = lazy(() => import("react-select"));
-const Select = props => <ReactSelect className="select" {...props} />;
+const Select = ({ options, value, onChange }) => (
+  <ReactSelect
+    className="select"
+    options={options}
+    value={value}
+    onChange={onChange}
+  />
+);
 
 const makeContainer = className => ({ children }) => <div className={className}>{children}</div>;
 
