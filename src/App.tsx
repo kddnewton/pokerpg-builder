@@ -1,11 +1,11 @@
-import React, { Suspense, lazy, useState, useCallback } from "react";
+import * as React from "react";
 
 import leveler from "./leveler";
 import natures from "./natures.csv";
 import pokemon from "./pokemon.csv";
 import "./styles.css";
 
-const ReactSelect = lazy(() => import("react-select"));
+const ReactSelect = React.lazy(() => import("react-select"));
 const Select = ({ options, value, onChange }) => (
   <ReactSelect
     className="select"
@@ -69,12 +69,12 @@ const algorithmOpts = [{ label: "Random", value: "Random" }, { label: "Even", va
 const getRandomNature = () => natureOpts[Math.floor(Math.random() * natureOpts.length)];
 
 const App = () => {
-  const [pokemonOpt, setPokemonOpt] = useState(pokemonOpts[0]);
-  const [levelOpt, setLevelOpt] = useState(levelOpts[0]);
-  const [natureOpt, setNatureOpt] = useState(getRandomNature());
-  const [algorithmOpt, setAlgorithmOpt] = useState(algorithmOpts[0]);
+  const [pokemonOpt, setPokemonOpt] = React.useState(pokemonOpts[0]);
+  const [levelOpt, setLevelOpt] = React.useState(levelOpts[0]);
+  const [natureOpt, setNatureOpt] = React.useState(getRandomNature());
+  const [algorithmOpt, setAlgorithmOpt] = React.useState(algorithmOpts[0]);
 
-  const onRandomNatureClick = useCallback(() => setNatureOpt(getRandomNature()), []);
+  const onRandomNatureClick = () => setNatureOpt(getRandomNature());
 
   const poke = leveler(levelOpt.value, natureOpt.value, pokemonOpt.value, algorithmOpt.value);
   const hp = levelOpt.value + poke.hp * 3 + 10;
@@ -89,7 +89,7 @@ const App = () => {
           <Text>(PDF)</Text>
         </a>
       </header>
-      <Suspense fallback={null}>
+      <React.Suspense fallback={null}>
         <Container>
           <Label>
             <Text>Pokemon</Text>
@@ -169,7 +169,7 @@ const App = () => {
             </Cols>
           </Row>
         </Container>
-      </Suspense>
+      </React.Suspense>
     </>
   );
 };

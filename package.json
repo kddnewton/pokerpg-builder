@@ -4,9 +4,10 @@
   "description": "PokeRPG Pokemon Builder",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production --progress",
-    "lint": "eslint ."
+    "compile": "tsc",
+    "lint": "eslint .",
+    "start": "webpack-dev-server --mode development --hot"
   },
   "author": "Kevin Deisz",
   "license": "MIT",
@@ -21,6 +22,10 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
@@ -33,6 +38,7 @@
     "eslint-plugin-react-hooks": "^2.0.1",
     "react-test-renderer": "^16.9.0",
     "style-loader": "^1.0.0",
+    "typescript": "^3.6.2",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0"
