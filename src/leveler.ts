@@ -1,17 +1,25 @@
-const compareStat = (valueA, valueB) => (valueA > valueB ? 1 : -1);
+import { AlgorithmName, Nature, Pokemon, PokemonStats, StatName } from "./typings";
 
-const canRaiseStat = (originalStats, currentStats, nextStat) => (
-  Object.keys(originalStats).every(statName => (
-    originalStats[statName] === originalStats[nextStat]
-    || (
-      compareStat(originalStats[statName], originalStats[nextStat])
-      === compareStat(currentStats[statName], currentStats[nextStat] + 1)
-    )
-  ))
+const compareStat = (valueA: number, valueB: number) => (
+  valueA > valueB ? 1 : -1
 );
 
-const getNextRandomStat = (originalStats, currentStats) => {
-  const stats = Object.keys(originalStats);
+const canRaiseStat = (originalStats: PokemonStats, currentStats: Pokemon, nextStat: StatName) => (
+  Object.keys(originalStats).every(key => {
+    const statName = key as StatName;
+
+    return (
+      originalStats[statName] === originalStats[nextStat]
+      || (
+        compareStat(originalStats[statName], originalStats[nextStat])
+        === compareStat(currentStats[statName], currentStats[nextStat] + 1)
+      )
+    );
+  })
+);
+
+const getNextRandomStat = (originalStats: PokemonStats, currentStats: Pokemon): StatName => {
+  const stats = Object.keys(originalStats) as StatName[];
   const nextStat = stats[Math.floor(Math.random() * stats.length)];
 
   if (canRaiseStat(originalStats, currentStats, nextStat)) {
@@ -20,30 +28,31 @@ const getNextRandomStat = (originalStats, currentStats) => {
   return getNextRandomStat(originalStats, currentStats);
 };
 
-const getNextEvenStat = (originalStats, currentStats) => (
-  Object.keys(originalStats).reduce((current, stat) => {
-    const delta = currentStats[stat] - originalStats[stat];
+const getNextEvenStat = (originalStats: PokemonStats, currentStats: Pokemon): StatName => {
+  const stats = Object.keys(originalStats) as StatName[];
+  let nextStat = stats[0];
 
-    const hasGoodRatio = (
-      current === null || delta < currentStats[current] - originalStats[current]
-    );
+  stats.forEach((stat: StatName) => {
+    const delta = currentStats[stat] - originalStats[stat];
+    const hasGoodRatio = delta < currentStats[nextStat] - originalStats[nextStat];
 
     if (hasGoodRatio && canRaiseStat(originalStats, currentStats, stat)) {
-      return stat;
+      nextStat = stat;
     }
-    return current;
-  }, null)
-);
+  });
 
-const applyNature = (nature, pokemon) => {
-  const natureStatDelta = stat => (stat === "hp" ? 1 : 2);
+  return nextStat;
+};
+
+const applyNature = (nature: Nature, pokemon: Pokemon) => {
+  const natureStatDelta = (stat: StatName) => (stat === "hp" ? 1 : 2);
 
   pokemon[nature.Raise] += natureStatDelta(nature.Raise);
   pokemon[nature.Lower] -= Math.max(1, natureStatDelta(nature.Lower));
   return pokemon;
 };
 
-const applyLevel = (level, pokemon, algorithm) => {
+const applyLevel = (level: number, pokemon: Pokemon, algorithm: AlgorithmName) => {
   const getNextStat = { Even: getNextEvenStat, Random: getNextRandomStat }[algorithm];
   const originalStats = {
     hp: pokemon.hp,
@@ -63,7 +72,7 @@ const applyLevel = (level, pokemon, algorithm) => {
   return pokemon;
 };
 
-const leveler = (level, nature, pokemon, algorithm) => (
+const leveler = (level: number, nature: Nature, pokemon: Pokemon, algorithm: AlgorithmName) => (
   applyLevel(level, applyNature(nature, { ...pokemon }), algorithm)
 );
 

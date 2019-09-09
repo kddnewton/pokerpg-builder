@@ -1,12 +1,22 @@
 import * as React from "react";
 
+import { AlgorithmName, Nature, Pokemon, PokemonSpec } from "./typings";
 import leveler from "./leveler";
-import natures from "./natures.csv";
-import pokemon from "./pokemon.csv";
 import "./styles.css";
 
+const natures = require("./natures.csv") as Nature[];
+const pokemon = require("./pokemon.csv") as PokemonSpec[];
+
 const ReactSelect = React.lazy(() => import("react-select"));
-const Select = ({ options, value, onChange }) => (
+
+type SelectValue = any;
+type SelectProps = {
+  options: { label: string | number, value: SelectValue }[];
+  value: SelectValue;
+  onChange: (value: SelectValue) => void;
+};
+
+const Select = ({ options, value, onChange }: SelectProps) => (
   <ReactSelect
     className="select"
     options={options}
@@ -15,7 +25,13 @@ const Select = ({ options, value, onChange }) => (
   />
 );
 
-const makeContainer = className => ({ children }) => <div className={className}>{children}</div>;
+type ContainerProps = {
+  children: React.ReactNode;
+};
+
+const makeContainer = (className: string) => ({ children }: ContainerProps) => (
+  <div className={className}>{children}</div>
+);
 
 const Container = makeContainer("container");
 const Row = makeContainer("row");
@@ -25,13 +41,17 @@ const RestCols = makeContainer("col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-
 const SplitCols = makeContainer("col-xs-6");
 const Well = makeContainer("well");
 
-const Button = ({ children, onClick }) => (
+type ButtonProps = ContainerProps & {
+  onClick: () => void;
+};
+
+const Button = ({ children, onClick }: ButtonProps) => (
   <button type="button" className="btn btn-primary" onClick={onClick}>
     {children}
   </button>
 );
 
-const Label = ({ children }) => (
+const Label = ({ children }: ContainerProps) => (
   <Row>
     <Cols>
       <strong>{children}</strong>
@@ -39,10 +59,12 @@ const Label = ({ children }) => (
   </Row>
 );
 
-const Text = ({ children }) => children;
+const Text = ({ children }: { children: React.ReactNode }) => (
+  <>{children}</>
+);
 
-const makePokemonOpt = spec => {
-  const value = {
+const makePokemonOpt = (spec: PokemonSpec) => {
+  const value: Pokemon = {
     number: spec.Number,
     name: spec.Name,
     hp: parseInt(spec.HP, 10),
@@ -61,18 +83,34 @@ const makePokemonOpt = spec => {
   return { label, value };
 };
 
-const pokemonOpts = pokemon.filter(({ Name }) => Name).map(makePokemonOpt);
-const levelOpts = [...Array(100).keys()].map(level => ({ label: level + 1, value: level + 1 }));
-const natureOpts = natures.map(nature => ({ label: nature.Nature, value: nature }));
-const algorithmOpts = [{ label: "Random", value: "Random" }, { label: "Even", value: "Even" }];
+type PokemonOpt = { label: string, value: Pokemon };
+const pokemonOpts: PokemonOpt[] = pokemon.map(makePokemonOpt);
+
+type LevelOpt = { label: number, value: number };
+const levelOpts: LevelOpt[] = Array(100).fill(0).map((_zero, level) => ({
+  label: level + 1,
+  value: level + 1
+}));
+
+type NatureOpt = { label: string, value: Nature };
+const natureOpts: NatureOpt[] = natures.map((nature: Nature) => ({
+  label: nature.Nature,
+  value: nature
+}));
+
+type AlgorithmOpt = { label: string, value: AlgorithmName };
+const algorithmOpts: AlgorithmOpt[] = [
+  { label: "Random", value: "Random" },
+  { label: "Even", value: "Even" }
+];
 
 const getRandomNature = () => natureOpts[Math.floor(Math.random() * natureOpts.length)];
 
 const App = () => {
-  const [pokemonOpt, setPokemonOpt] = React.useState(pokemonOpts[0]);
-  const [levelOpt, setLevelOpt] = React.useState(levelOpts[0]);
-  const [natureOpt, setNatureOpt] = React.useState(getRandomNature());
-  const [algorithmOpt, setAlgorithmOpt] = React.useState(algorithmOpts[0]);
+  const [pokemonOpt, setPokemonOpt] = React.useState<PokemonOpt>(pokemonOpts[0]);
+  const [levelOpt, setLevelOpt] = React.useState<LevelOpt>(levelOpts[0]);
+  const [natureOpt, setNatureOpt] = React.useState<NatureOpt>(getRandomNature());
+  const [algorithmOpt, setAlgorithmOpt] = React.useState<AlgorithmOpt>(algorithmOpts[0]);
 
   const onRandomNatureClick = () => setNatureOpt(getRandomNature());
 
