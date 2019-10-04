@@ -12,8 +12,8 @@
   "author": "Kevin Deisz",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-select": "^3.0.8"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
-    "@types/react": "^16.9.4",
+    "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "@types/react-select": "^3.0.5",
     "awesome-typescript-loader": "^5.2.1",
@@ -35,9 +35,9 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.15.1",
-    "eslint-plugin-react-hooks": "^2.1.1",
-    "react-test-renderer": "^16.10.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "react-test-renderer": "^16.10.2",
     "style-loader": "^1.0.0",
     "typescript": "^3.6.3",
     "webpack": "^4.41.0",
