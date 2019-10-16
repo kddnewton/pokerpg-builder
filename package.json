@@ -7,7 +7,8 @@
     "build": "webpack --mode production --progress",
     "compile": "tsc",
     "lint": "eslint .",
-    "start": "webpack-dev-server --mode development --hot"
+    "start": "webpack-dev-server --mode development --hot",
+    "test": "true"
   },
   "author": "Kevin Deisz",
   "license": "MIT",
@@ -17,14 +18,14 @@
     "react-select": "^3.0.8"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
-    "@types/react": "^16.9.5",
-    "@types/react-dom": "^16.9.1",
+    "@types/react": "^16.9.7",
+    "@types/react-dom": "^16.9.2",
     "@types/react-select": "^3.0.5",
     "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.3",
@@ -39,8 +40,8 @@
     "eslint-plugin-react-hooks": "^2.1.2",
     "react-test-renderer": "^16.10.2",
     "style-loader": "^1.0.0",
-    "typescript": "^3.6.3",
-    "webpack": "^4.41.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
   }
