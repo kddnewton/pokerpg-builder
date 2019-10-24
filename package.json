@@ -13,8 +13,8 @@
   "author": "Kevin Deisz",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-select": "^3.0.8"
   },
   "devDependencies": {
@@ -37,12 +37,12 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.1.2",
-    "react-test-renderer": "^16.10.2",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "react-test-renderer": "^16.11.0",
     "style-loader": "^1.0.0",
     "typescript": "^3.6.4",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.9.0"
   }
 }
