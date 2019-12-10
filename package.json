@@ -30,7 +30,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.1",
+    "css-loader": "^3.3.0",
     "dsv-loader": "^2.0.0",
     "eslint": "^6.7.2",
     "eslint-config-airbnb": "^18.0.1",
