@@ -9,9 +9,10 @@ const pokemon = require("./pokemon.csv") as PokemonSpec[];
 
 const ReactSelect = React.lazy(() => import("react-select"));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SelectValue = any;
 type SelectProps = {
-  options: { label: string | number, value: SelectValue }[];
+  options: { label: string | number; value: SelectValue }[];
   value: SelectValue;
   onChange: (value: SelectValue) => void;
 };
@@ -83,22 +84,22 @@ const makePokemonOpt = (spec: PokemonSpec) => {
   return { label, value };
 };
 
-type PokemonOpt = { label: string, value: Pokemon };
+type PokemonOpt = { label: string; value: Pokemon };
 const pokemonOpts: PokemonOpt[] = pokemon.map(makePokemonOpt);
 
-type LevelOpt = { label: number, value: number };
+type LevelOpt = { label: number; value: number };
 const levelOpts: LevelOpt[] = Array(100).fill(0).map((_zero, level) => ({
   label: level + 1,
   value: level + 1
 }));
 
-type NatureOpt = { label: string, value: Nature };
+type NatureOpt = { label: string; value: Nature };
 const natureOpts: NatureOpt[] = natures.map((nature: Nature) => ({
   label: nature.Nature,
   value: nature
 }));
 
-type AlgorithmOpt = { label: string, value: AlgorithmName };
+type AlgorithmOpt = { label: string; value: AlgorithmName };
 const algorithmOpts: AlgorithmOpt[] = [
   { label: "Random", value: "Random" },
   { label: "Even", value: "Even" }
