@@ -41,7 +41,7 @@
     "eslint-plugin-react-hooks": "^2.4.0",
     "react-test-renderer": "^16.12.0",
     "style-loader": "^1.1.3",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.2",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
