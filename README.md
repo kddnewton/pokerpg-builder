@@ -1,6 +1,6 @@
 # PokeRPG Pokemon Builder
 
-[![Build Status](https://travis-ci.com/kddeisz/pokerpg-builder.svg?branch=master)](https://travis-ci.com/kddeisz/pokerpg-builder)
+[![Build Status](https://github.com/kddeisz/pokerpg-builder/workflows/Main/badge.svg)](https://github.com/kddeisz/pokerpg-builder/actions)
 
 A small webapp for building Pokemon per the PokeRPG spec.
 
