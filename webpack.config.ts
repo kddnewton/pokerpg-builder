@@ -1,7 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require("path");
+import path from "path";
 
-module.exports = {
+export default {
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     path: path.join(__dirname, "docs"),

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import { AlgorithmName, Nature, Pokemon, PokemonSpec } from "./typings";
 import leveler from "./leveler";
@@ -9,15 +9,15 @@ const pokemon = require("./pokemon.csv") as PokemonSpec[];
 
 const ReactSelect = React.lazy(() => import("react-select"));
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type SelectValue = any;
-type SelectProps = {
-  options: { label: string | number; value: SelectValue }[];
-  value: SelectValue;
-  onChange: (value: SelectValue) => void;
+type SelectProps<T> = {
+  options: T[];
+  value: T;
+  onChange: (value: T) => void;
 };
 
-const Select = ({ options, value, onChange }: SelectProps) => (
+const Select = <T extends string | number | Record<string, unknown>>(
+  { options, value, onChange }: SelectProps<T>
+) => (
   <ReactSelect
     className="select"
     options={options}
@@ -26,11 +26,7 @@ const Select = ({ options, value, onChange }: SelectProps) => (
   />
 );
 
-type ContainerProps = {
-  children: React.ReactNode;
-};
-
-const makeContainer = (className: string) => ({ children }: ContainerProps) => (
+const makeContainer = (className: string): React.FC => ({ children }) => (
   <div className={className}>{children}</div>
 );
 
@@ -42,17 +38,17 @@ const RestCols = makeContainer("col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-
 const SplitCols = makeContainer("col-xs-6");
 const Well = makeContainer("well");
 
-type ButtonProps = ContainerProps & {
+type ButtonProps = {
   onClick: () => void;
 };
 
-const Button = ({ children, onClick }: ButtonProps) => (
+const Button: React.FC<ButtonProps> = ({ children, onClick }) => (
   <button type="button" className="btn btn-primary" onClick={onClick}>
     {children}
   </button>
 );
 
-const Label = ({ children }: ContainerProps) => (
+const Label: React.FC = ({ children }) => (
   <Row>
     <Cols>
       <strong>{children}</strong>
@@ -60,12 +56,17 @@ const Label = ({ children }: ContainerProps) => (
   </Row>
 );
 
-const Text = ({ children }: { children: React.ReactNode }) => (
+const Text: React.FC = ({ children }) => (
   <>{children}</>
 );
 
-const makePokemonOpt = (spec: PokemonSpec) => {
-  const value: Pokemon = {
+type PokemonOpt = { label: string; value: Pokemon };
+type LevelOpt = { label: number; value: number };
+type NatureOpt = { label: string; value: Nature };
+type AlgorithmOpt = { label: string; value: AlgorithmName };
+
+const makePokemonOpt = (spec: PokemonSpec): PokemonOpt => {
+  const value = {
     number: spec.Number,
     name: spec.Name,
     hp: parseInt(spec.HP, 10),
@@ -84,22 +85,18 @@ const makePokemonOpt = (spec: PokemonSpec) => {
   return { label, value };
 };
 
-type PokemonOpt = { label: string; value: Pokemon };
 const pokemonOpts: PokemonOpt[] = pokemon.map(makePokemonOpt);
 
-type LevelOpt = { label: number; value: number };
 const levelOpts: LevelOpt[] = Array(100).fill(0).map((_zero, level) => ({
   label: level + 1,
   value: level + 1
 }));
 
-type NatureOpt = { label: string; value: Nature };
 const natureOpts: NatureOpt[] = natures.map((nature: Nature) => ({
   label: nature.Nature,
   value: nature
 }));
 
-type AlgorithmOpt = { label: string; value: AlgorithmName };
 const algorithmOpts: AlgorithmOpt[] = [
   { label: "Random", value: "Random" },
   { label: "Even", value: "Even" }
@@ -107,11 +104,11 @@ const algorithmOpts: AlgorithmOpt[] = [
 
 const getRandomNature = () => natureOpts[Math.floor(Math.random() * natureOpts.length)];
 
-const App = () => {
-  const [pokemonOpt, setPokemonOpt] = React.useState<PokemonOpt>(pokemonOpts[0]);
-  const [levelOpt, setLevelOpt] = React.useState<LevelOpt>(levelOpts[0]);
-  const [natureOpt, setNatureOpt] = React.useState<NatureOpt>(getRandomNature());
-  const [algorithmOpt, setAlgorithmOpt] = React.useState<AlgorithmOpt>(algorithmOpts[0]);
+const App: React.FC = () => {
+  const [pokemonOpt, setPokemonOpt] = useState<PokemonOpt>(pokemonOpts[0]);
+  const [levelOpt, setLevelOpt] = useState<LevelOpt>(levelOpts[0]);
+  const [natureOpt, setNatureOpt] = useState<NatureOpt>(getRandomNature());
+  const [algorithmOpt, setAlgorithmOpt] = useState<AlgorithmOpt>(algorithmOpts[0]);
 
   const onRandomNatureClick = () => setNatureOpt(getRandomNature());
 
@@ -135,7 +132,7 @@ const App = () => {
           </Label>
           <Row>
             <Cols>
-              <Select options={pokemonOpts} value={pokemonOpt} onChange={setPokemonOpt} />
+              <Select<PokemonOpt> options={pokemonOpts} value={pokemonOpt} onChange={setPokemonOpt} />
             </Cols>
           </Row>
           <Label>

@@ -72,7 +72,7 @@ const applyLevel = (level: number, pokemon: Pokemon, algorithm: AlgorithmName) =
   return pokemon;
 };
 
-const leveler = (level: number, nature: Nature, pokemon: Pokemon, algorithm: AlgorithmName) => (
+const leveler = (level: number, nature: Nature, pokemon: Pokemon, algorithm: AlgorithmName): Pokemon => (
   applyLevel(level, applyNature(nature, { ...pokemon }), algorithm)
 );
 
