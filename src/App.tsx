@@ -4,6 +4,7 @@ import { AlgorithmName, Nature, Pokemon, PokemonSpec } from "./typings";
 import leveler from "./leveler";
 import "./styles.css";
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const natures = require("./natures.csv") as Nature[];
 const pokemon = require("./pokemon.csv") as PokemonSpec[];
 
