@@ -27,17 +27,20 @@ const Select = <T extends string | number | Record<string, unknown>>(
   />
 );
 
-const makeContainer = (className: string): React.FC => ({ children }) => (
-  <div className={className}>{children}</div>
-);
+const makeContainer = (displayName: string, className: string): React.FC => {
+  const container: React.FC = ({ children }) => <div className={className}>{children}</div>;
+  container.displayName = displayName;
 
-const Container = makeContainer("container");
-const Row = makeContainer("row");
-const Cols = makeContainer("col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3");
-const ButtonCols = makeContainer("col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3");
-const RestCols = makeContainer("col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5");
-const SplitCols = makeContainer("col-xs-6");
-const Well = makeContainer("well");
+  return container;
+};
+
+const Container = makeContainer("Container", "container");
+const Row = makeContainer("Row", "row");
+const Cols = makeContainer("Cols", "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3");
+const ButtonCols = makeContainer("ButtonCols", "col-xs-2 col-sm-offset-1 col-md-offset-2 col-lg-1 col-lg-offset-3");
+const RestCols = makeContainer("RestCols", "col-xs-9 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-6 col-lg-5");
+const SplitCols = makeContainer("SplitCols", "col-xs-6");
+const Well = makeContainer("Well", "well");
 
 type ButtonProps = {
   onClick: () => void;
