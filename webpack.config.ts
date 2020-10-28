@@ -11,10 +11,14 @@ export default {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, use: "awesome-typescript-loader" },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
+        use: ["style-loader", "css-loader"],
         exclude: /node_modules/
       },
       { test: /\.csv$/, use: "dsv-loader" }
