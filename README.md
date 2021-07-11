@@ -1,6 +1,6 @@
 # PokeRPG Pokemon Builder
 
-[![Build Status](https://github.com/kddeisz/pokerpg-builder/workflows/Main/badge.svg)](https://github.com/kddeisz/pokerpg-builder/actions)
+[![Build Status](https://github.com/kddnewton/pokerpg-builder/workflows/Main/badge.svg)](https://github.com/kddnewton/pokerpg-builder/actions)
 
 A small webapp for building Pokemon per the PokeRPG spec.
 
@@ -13,7 +13,7 @@ Ensure you have `yarn` installed. In the root of the directory run `yarn` to ins
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kddeisz/pokerpg-builder.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kddnewton/pokerpg-builder.
 
 ## License
 
