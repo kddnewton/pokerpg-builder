@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import type { default as StateManagedSelect, OnChangeValue } from "react-select";
 
 import { AlgorithmName, Nature, Pokemon, PokemonSpec } from "./typings";
 import leveler from "./leveler";
@@ -8,22 +9,22 @@ import "./styles.css";
 const natures = require("./natures.csv") as Nature[];
 const pokemon = require("./pokemon.csv") as PokemonSpec[];
 
-const ReactSelect = React.lazy(() => import("react-select"));
+// Explicit casting here as otherwise we can't use the generic
+const ReactSelect = React.lazy(() => import("react-select")) as StateManagedSelect;
 
-type SelectProps<T> = {
-  options: T[];
-  value: T;
-  onChange: (value: T) => void;
-};
+// Explicitly not handling null here and forcing our way around the types
+type SelectProps<T> = { options: T[], value: T, onChange: (value: T) => void };
+type SelectOnChange<T> = (newValue: OnChangeValue<T, false>) => void;
 
-const Select = <T extends string | number | Record<string, unknown>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Select = <T extends { label: string | number, value: any }>(
   { options, value, onChange }: SelectProps<T>
 ) => (
-  <ReactSelect
+  <ReactSelect<T>
     className="select"
     options={options}
     value={value}
-    onChange={onChange}
+    onChange={onChange as SelectOnChange<T>}
   />
 );
 
@@ -136,7 +137,7 @@ const App: React.FC = () => {
           </Label>
           <Row>
             <Cols>
-              <Select<PokemonOpt> options={pokemonOpts} value={pokemonOpt} onChange={setPokemonOpt} />
+              <Select options={pokemonOpts} value={pokemonOpt} onChange={setPokemonOpt} />
             </Cols>
           </Row>
           <Label>
