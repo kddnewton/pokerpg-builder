@@ -5,9 +5,9 @@ import { AlgorithmName, Nature, Pokemon, PokemonSpec } from "./typings";
 import leveler from "./leveler";
 import "./styles.css";
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-const natures = require("./natures.csv") as Nature[];
-const pokemon = require("./pokemon.csv") as PokemonSpec[];
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access */
+const natures = require("./natures.csv").default as Nature[];
+const pokemon = require("./pokemon.csv").default as PokemonSpec[];
 
 // Explicit casting here as otherwise we can't use the generic
 const ReactSelect = React.lazy(() => import("react-select")) as StateManagedSelect;

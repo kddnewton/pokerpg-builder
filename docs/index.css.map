@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/styles.css"],
+  "sourcesContent": ["body {\n  font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif;\n}\n\nheader {\n  background-color: #3564ad;\n  border-bottom: 4px solid #ffcb05;\n  box-shadow: 0px 1px 5px 0px #6af;\n  color: white;\n  margin-bottom: 40px;\n  padding: 4px 8px;\n}\n\nheader a {\n  color: white;\n}\n\nheader a:hover {\n  color: white;\n  font-weight: bold;\n  text-decoration: none;\n}\n\n.select {\n  margin-bottom: 20px;\n}\n\n.well {\n  margin-top: 20px;\n}\n\n.strong {\n  font-weight: bold;\n}\n\nstrong {\n  display: inline-block;\n  margin-bottom: 5px;\n}\n"],
+  "mappings": "AAAA,KACE,sDAGF,OACE,yBACA,gCACA,0BACA,WACA,mBATF,gBAaA,SACE,WAGF,eACE,WACA,gBACA,qBAGF,QACE,mBAGF,MACE,gBAGF,QACE,gBAGF,OACE,qBACA",
+  "names": []
+}
