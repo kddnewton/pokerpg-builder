@@ -26,7 +26,7 @@
     "@typescript-eslint/parser": "^5.9.1",
     "esbuild": "^0.14.11",
     "esbuild-plugin-dsv": "^0.0.2",
-    "eslint": "^8.6.0",
+    "eslint": "^8.7.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
