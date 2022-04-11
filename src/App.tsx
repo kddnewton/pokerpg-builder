@@ -28,8 +28,9 @@ const Select = <T extends { label: string | number, value: any }>(
   />
 );
 
-const makeContainer = (displayName: string, className: string): React.FC => {
-  const container: React.FC = ({ children }) => <div className={className}>{children}</div>;
+type Container = React.FC<{ children: React.ReactNode }>;
+const makeContainer = (displayName: string, className: string): Container => {
+  const container: Container = ({ children }) => <div className={className}>{children}</div>;
   container.displayName = displayName;
 
   return container;
@@ -44,6 +45,7 @@ const SplitCols = makeContainer("SplitCols", "col-xs-6");
 const Well = makeContainer("Well", "well");
 
 type ButtonProps = {
+  children: React.ReactNode;
   onClick: () => void;
 };
 
@@ -53,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick }) => (
   </button>
 );
 
-const Label: React.FC = ({ children }) => (
+const Label: Container = ({ children }) => (
   <Row>
     <Cols>
       <strong>{children}</strong>
@@ -61,7 +63,7 @@ const Label: React.FC = ({ children }) => (
   </Row>
 );
 
-const Text: React.FC = ({ children }) => (
+const Text: Container = ({ children }) => (
   <>{children}</>
 );
 
