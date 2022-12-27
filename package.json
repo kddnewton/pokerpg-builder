@@ -23,7 +23,7 @@
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.0",
-    "esbuild": "^0.16.10",
+    "esbuild": "^0.16.11",
     "esbuild-plugin-dsv": "^0.0.2",
     "eslint": "^8.30.0",
     "eslint-plugin-import": "^2.26.0",
