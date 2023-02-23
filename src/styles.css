@@ -25,6 +25,18 @@ header a:hover {
   margin-bottom: 20px;
 }
 
+.select.fallback {
+  appearance: none;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: black;
+  min-height: 38px;
+  padding: 2px 10px;
+  width: 100%;
+}
+
 .well {
   margin-top: 20px;
 }
