@@ -1022,10 +1022,10 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild-plugin-dsv@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-dsv/-/esbuild-plugin-dsv-0.0.2.tgz#747e6c8d03cfca222169c22380cd12c271002e04"
-  integrity sha512-BS9o/IQOxTmiGTIuHYcFZ3xRDRr9tvXLbANeiTt60GvHmeTs38omPq/rwMq7dyBbRJLJ1BkRYAQ/aF+vyuUaqg==
+esbuild-plugin-dsv@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/esbuild-plugin-dsv/-/esbuild-plugin-dsv-0.0.4.tgz#fb866262f3254caba84e23c178743f14265612cc"
+  integrity sha512-CueLJ+kSBTWeII7NL+0uPT02nrbcA1Dz35D2b5WVwwuq5UjVYEnikzHNxWLNdA/8q3E/kSfPBL3pI8JbfFKgPw==
   dependencies:
     d3-dsv "^2.0.0"
     fs-extra "^9.1.0"
