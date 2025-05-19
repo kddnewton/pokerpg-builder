@@ -18,7 +18,7 @@
     "react-select": "^5.10.1"
   },
   "devDependencies": {
-    "@types/node": "^22.15.18",
+    "@types/node": "^22.15.19",
     "@types/react": "^18.3.13",
     "@types/react-dom": "^19.1.5",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
