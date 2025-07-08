@@ -14,5 +14,5 @@ const ctx = await esbuild.context({
   target: "esnext"
 });
 
-const { host, port } = await ctx.serve({ servedir: outdir });
-console.log(`Listening at ${host}:${port}`);
+const serve = await ctx.serve({ servedir: outdir });
+console.log(`Listening at ${serve.hosts[0]}:${serve.port}`);
