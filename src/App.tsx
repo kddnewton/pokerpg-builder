@@ -5,7 +5,7 @@ import { AlgorithmName, Nature, Pokemon, PokemonSpec } from "./typings";
 import leveler from "./leveler";
 import "./styles.css";
 
-/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-require-imports */
 const natures = require("./natures.csv").default as Nature[];
 const pokemon = require("./pokemon.csv").default as PokemonSpec[];
 
@@ -36,9 +36,9 @@ const Select = <T extends { label: string | number, value: any, key: string }>(
   </React.Suspense>
 );
 
-type Container = React.FC<{ children: React.ReactNode }>;
-const makeContainer = (displayName: string, className: string): Container => {
-  const container: Container = ({ children }) => <div className={className}>{children}</div>;
+type ContentContainer = React.FC<{ children: React.ReactNode }>;
+const makeContainer = (displayName: string, className: string): ContentContainer => {
+  const container: ContentContainer = ({ children }) => <div className={className}>{children}</div>;
   container.displayName = displayName;
 
   return container;
@@ -63,7 +63,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick }) => (
   </button>
 );
 
-const Label: Container = ({ children }) => (
+const Label: ContentContainer = ({ children }) => (
   <Row>
     <Cols>
       <strong>{children}</strong>
@@ -71,7 +71,7 @@ const Label: Container = ({ children }) => (
   </Row>
 );
 
-const Text: Container = ({ children }) => (
+const Text: ContentContainer = ({ children }) => (
   <>{children}</>
 );
 
