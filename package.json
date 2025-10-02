@@ -13,13 +13,13 @@
   "author": "Kevin Newton",
   "license": "MIT",
   "dependencies": {
-    "react": "^19.1.1",
+    "react": "^19.2.0",
     "react-dom": "^19.1.1",
     "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@types/node": "^24.6.1",
-    "@types/react": "^19.1.16",
+    "@types/react": "^19.2.0",
     "@types/react-dom": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",
