@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "react": "^19.2.3",
-    "react-dom": "^19.2.1",
+    "react-dom": "^19.2.3",
     "react-select": "^5.10.2"
   },
   "devDependencies": {
